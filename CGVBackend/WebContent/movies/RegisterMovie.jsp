@@ -89,6 +89,9 @@
 		            $(this).parent().removeClass('active');
 		        }
 		    });
+		    
+		    $(":text").css("width", "350px");
+		    $("tr>td:first").css("width", "100px");
 		});
   	</script>
   </head>
@@ -174,49 +177,52 @@
               </tr>
               <tr>
               	<td>장르</td>
-               	<td id="genre">
+               	<td id="genre" >
                		<span style="font-size: .8em; cursor: pointer;">
                			<img src="<c:url value='/images/trashcanIcon.jpg'/>"/>선택 비우기
                		</span>
-               		<br/>
-                	<input type="checkbox" name="genre" value="가족"/>가족&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="공포/호러"/>공포/호러&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="드라마"/>드라마&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="SF"/>SF&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="멜로/로맨스"/>멜로/로맨스&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="코미디"/>코미디&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="애니메이션"/>애니메이션
-                	<br/>
-                	<input type="checkbox" name="genre" value="느와르"/>느와르&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="단편"/>단편&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="다큐멘터리"/>다큐멘터리&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="로드무비"/>로드무비&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="무협"/>무협&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="뮤지컬"/>뮤지컬&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="뮤직"/>뮤직
-                	<br/>
-                	<input type="checkbox" name="genre" value="미스테리"/>미스테리&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="범죄"/>범죄&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="옴니버스"/>옴니버스&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="서부"/>서부&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="스릴러"/>스릴러&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="스포츠"/>스포츠&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="시대극/사극"/>시대극/사극
-                	<br/>
-                	<input type="checkbox" name="genre" value="아동"/>아동&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="액션"/>액션&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="어드벤처"/>어드벤처&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="역사"/>역사&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="전기"/>전기&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="전쟁"/>전쟁&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="종교"/>종교
-                	<br/>
-                	<input type="checkbox" name="genre" value="재난"/>재난&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="청춘영화"/>청춘영화&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="퀴어"/>퀴어&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="환타지"/>환타지&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="학원물"/>학원물&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="에로"/>에로
+               		<table>
+               			<tr>
+               				<td><input type="checkbox" name="genre" value="가족"/>가족</td>
+		                	<td><input type="checkbox" name="genre" value="공포/호러"/>공포/호러</td>
+		                	<td><input type="checkbox" name="genre" value="느와르"/>느와르</td>
+		                	<td><input type="checkbox" name="genre" value="단편"/>단편</td>
+		                	<td><input type="checkbox" name="genre" value="다큐멘터리"/>다큐멘터리</td>
+		                	<td><input type="checkbox" name="genre" value="드라마"/>드라마</td>		                	
+		                	<td><input type="checkbox" name="genre" value="로드무비"/>로드무비</td>
+		                </tr>	
+		                	<td><input type="checkbox" name="genre" value="멜로/로맨스"/>멜로/로맨스</td>
+		                	<td><input type="checkbox" name="genre" value="무협"/>무협</td>
+		                	<td><input type="checkbox" name="genre" value="뮤지컬"/>뮤지컬</td>
+		                	<td><input type="checkbox" name="genre" value="뮤직"/>뮤직</td>
+		                	<td><input type="checkbox" name="genre" value="미스테리"/>미스테리</td>
+		                	<td><input type="checkbox" name="genre" value="범죄"/>범죄</td>
+		                	<td><input type="checkbox" name="genre" value="SF"/>SF</td>
+		                <tr>	
+		                	<td><input type="checkbox" name="genre" value="서부"/>서부</td>
+		                	<td><input type="checkbox" name="genre" value="스릴러"/>스릴러</td>
+		                	<td><input type="checkbox" name="genre" value="스포츠"/>스포츠</td>
+		                	<td><input type="checkbox" name="genre" value="시대극/사극"/>시대극/사극</td>
+		                	<td><input type="checkbox" name="genre" value="아동"/>아동</td>
+		                	<td><input type="checkbox" name="genre" value="애니메이션"/>애니메이션</td>
+			                <td><input type="checkbox" name="genre" value="액션"/>액션</td>
+			            </tr>   
+			                <td><input type="checkbox" name="genre" value="어드벤처"/>어드벤처</td>
+			                <td><input type="checkbox" name="genre" value="역사"/>역사</td>
+		                	<td><input type="checkbox" name="genre" value="에로"/>에로</td>
+		                	<td><input type="checkbox" name="genre" value="옴니버스"/>옴니버스</td> 
+		                	<td><input type="checkbox" name="genre" value="코미디"/>코미디</td>		                	             
+			                <td><input type="checkbox" name="genre" value="전기"/>전기</td>			                			                
+			                <td><input type="checkbox" name="genre" value="전쟁"/>전쟁</td>
+			            <tr>    
+			                <td><input type="checkbox" name="genre" value="종교"/>종교</td>                           			
+               				<td><input type="checkbox" name="genre" value="재난"/>재난</td>
+			                <td><input type="checkbox" name="genre" value="청춘영화"/>청춘영화</td>
+			                <td><input type="checkbox" name="genre" value="퀴어"/>퀴어</td>
+			                <td><input type="checkbox" name="genre" value="환타지"/>환타지</td>
+			                <td><input type="checkbox" name="genre" value="학원물"/>학원물</td>
+               			</tr>
+               		</table> 
                 	<label for="genre" class="error"></label>      
                 </td>
            	  <tr>
@@ -267,7 +273,7 @@
               </tr>
               <tr>
                 <td>소개</td>
-                <td><textarea rows="10" style="width: 60%" name="summary">${dto.summary}</textarea></td>
+                <td><textarea rows="10" style="width: 350px" name="summary">${dto.summary}</textarea></td>
               </tr>
               <tr>
               	<td colspan="2">

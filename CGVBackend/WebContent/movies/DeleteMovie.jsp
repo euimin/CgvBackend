@@ -18,6 +18,7 @@
 		%>
 		<script>
 			alert("삭제 실패");
+			history.back();
 		</script>
 		<%
 	}

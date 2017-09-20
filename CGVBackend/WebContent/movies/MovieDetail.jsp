@@ -98,6 +98,9 @@
 		            $(this).parent().removeClass('active');
 		        }
 		    });
+		    
+		    $(":text").css("width", "350px");
+		    $("tr>td:first").css("width", "100px");
 		});
 	    
 	    <c:if test="${not empty editSucceed}">
@@ -159,7 +162,7 @@
               <tr>
                 <td>포스터</td>
                 <td>
-                	<img src="<c:url value='/images/poster/${poster}'/>" alt="기존 포스터 이미지"/>
+                	<img src="<c:url value='/images/posters/${poster}'/>" alt="기존 포스터 이미지"/>
                 	<br/>
                 	<%=dto.getPoster()%>
                 </td>
@@ -197,49 +200,52 @@
               </tr>
               <tr>
               	<td>장르</td>
-               	<td id="genre">
+               	<td id="genre" style="width: 550px">
                		<span style="font-size: .8em; cursor: pointer;">
                			<img src="<c:url value='/images/trashcanIcon.jpg'/>"/>선택 비우기
                		</span>
-               		<br/>
-                	<input type="checkbox" name="genre" value="가족" <%if(dto.getGenre().contains("가족")){%>checked="checked"<% } %>/>가족&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="공포/호러" <%if(dto.getGenre().contains("공포/호러")){%>checked="checked"<% } %>/>공포/호러&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="드라마" <%if(dto.getGenre().contains("드라마")){%>checked="checked"<% } %>/>드라마&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="SF" <%if(dto.getGenre().contains("SF")){%>checked="checked"<% } %>/>SF&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="멜로/로맨스" <%if(dto.getGenre().contains("멜로/로맨스")){%>checked="checked"<% } %>/>멜로/로맨스&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="코미디" <%if(dto.getGenre().contains("코미디")){%>checked="checked"<% } %>/>코미디&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="애니메이션" <%if(dto.getGenre().contains("애니메이션")){%>checked="checked"<% } %>/>애니메이션
-                	<br/>
-                	<input type="checkbox" name="genre" value="느와르" <%if(dto.getGenre().contains("느와르")){%>checked="checked"<% } %>/>느와르&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="단편" <%if(dto.getGenre().contains("단편")){%>checked="checked"<% } %>/>단편&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="다큐멘터리" <%if(dto.getGenre().contains("다큐멘터리")){%>checked="checked"<% } %>/>다큐멘터리&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="로드무비" <%if(dto.getGenre().contains("로드무비")){%>checked="checked"<% } %>/>로드무비&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="무협" <%if(dto.getGenre().contains("무협")){%>checked="checked"<% } %>/>무협&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="뮤지컬" <%if(dto.getGenre().contains("뮤지컬")){%>checked="checked"<% } %>/>뮤지컬&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="뮤직" <%if(dto.getGenre().contains("뮤직")){%>checked="checked"<% } %>/>뮤직
-                	<br/>
-                	<input type="checkbox" name="genre" value="미스테리" <%if(dto.getGenre().contains("미스테리")){%>checked="checked"<% } %>/>미스테리&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="범죄" <%if(dto.getGenre().contains("범죄")){%>checked="checked"<% } %>/>범죄&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="옴니버스" <%if(dto.getGenre().contains("옴니버스")){%>checked="checked"<% } %>/>옴니버스&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="서부" <%if(dto.getGenre().contains("서부")){%>checked="checked"<% } %>/>서부&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="스릴러" <%if(dto.getGenre().contains("스릴러")){%>checked="checked"<% } %>/>스릴러&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="스포츠" <%if(dto.getGenre().contains("스포츠")){%>checked="checked"<% } %>/>스포츠&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="시대극/사극" <%if(dto.getGenre().contains("시대극/사극")){%>checked="checked"<% } %>/>시대극/사극
-                	<br/>
-                	<input type="checkbox" name="genre" value="아동" <%if(dto.getGenre().contains("아동")){%>checked="checked"<% } %>/>아동&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="액션" <%if(dto.getGenre().contains("액션")){%>checked="checked"<% } %>/>액션&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="어드벤처" <%if(dto.getGenre().contains("어드벤처")){%>checked="checked"<% } %>/>어드벤처&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="역사" <%if(dto.getGenre().contains("역사")){%>checked="checked"<% } %>/>역사&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="전기" <%if(dto.getGenre().contains("전기")){%>checked="checked"<% } %>/>전기&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="전쟁" <%if(dto.getGenre().contains("전쟁")){%>checked="checked"<% } %>/>전쟁&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="종교" <%if(dto.getGenre().contains("종교")){%>checked="checked"<% } %>/>종교
-                	<br/>
-                	<input type="checkbox" name="genre" value="재난" <%if(dto.getGenre().contains("재난")){%>checked="checked"<% } %>/>재난&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="청춘영화" <%if(dto.getGenre().contains("청춘영화")){%>checked="checked"<% } %>/>청춘영화&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="퀴어" <%if(dto.getGenre().contains("퀴어")){%>checked="checked"<% } %>/>퀴어&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="환타지" <%if(dto.getGenre().contains("환타지")){%>checked="checked"<% } %>/>환타지&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="학원물" <%if(dto.getGenre().contains("학원물")){%>checked="checked"<% } %>/>학원물&nbsp;&nbsp;
-                	<input type="checkbox" name="genre" value="에로" <%if(dto.getGenre().contains("에로")){%>checked="checked"<% } %>/>에로
+					<table>
+						<tr>
+							<td><input type="checkbox" name="genre" value="가족" <%if(dto.getGenre().contains("가족")){%>checked="checked"<% } %>/>가족</td>
+						   	<td><input type="checkbox" name="genre" value="공포/호러" <%if(dto.getGenre().contains("공포/호러")){%>checked="checked"<% } %>/>공포/호러</td>
+						   	<td><input type="checkbox" name="genre" value="느와르"<%if(dto.getGenre().contains("느와르")){%>checked="checked"<% } %>/>느와르</td>
+						   	<td><input type="checkbox" name="genre" value="단편" <%if(dto.getGenre().contains("단편")){%>checked="checked"<% } %>/>단편</td>
+						   	<td><input type="checkbox" name="genre" value="다큐멘터리" <%if(dto.getGenre().contains("다큐멘터리")){%>checked="checked"<% } %>/>다큐멘터리</td>
+						   	<td><input type="checkbox" name="genre" value="드라마" <%if(dto.getGenre().contains("드라마")){%>checked="checked"<% } %>/>드라마</td>		                	
+						   	<td><input type="checkbox" name="genre" value="로드무비" <%if(dto.getGenre().contains("로드무비")){%>checked="checked"<% } %>/>로드무비</td>
+					    </tr>	
+						   	<td><input type="checkbox" name="genre" value="멜로/로맨스" <%if(dto.getGenre().contains("멜로/로맨스")){%>checked="checked"<% } %>/>멜로/로맨스</td>
+						   	<td><input type="checkbox" name="genre" value="무협" <%if(dto.getGenre().contains("무협")){%>checked="checked"<% } %>/>무협</td>
+						   	<td><input type="checkbox" name="genre" value="뮤지컬" <%if(dto.getGenre().contains("뮤지컬")){%>checked="checked"<% } %>/>뮤지컬</td>
+						   	<td><input type="checkbox" name="genre" value="뮤직" <%if(dto.getGenre().contains("뮤직")){%>checked="checked"<% } %>/>뮤직</td>
+						   	<td><input type="checkbox" name="genre" value="미스테리" <%if(dto.getGenre().contains("미스테리")){%>checked="checked"<% } %>/>미스테리</td>
+						   	<td><input type="checkbox" name="genre" value="범죄" <%if(dto.getGenre().contains("범죄")){%>checked="checked"<% } %>/>범죄</td>
+						   	<td><input type="checkbox" name="genre" value="SF" <%if(dto.getGenre().contains("SF")){%>checked="checked"<% } %>/>SF</td>
+					    <tr>	
+						   	<td><input type="checkbox" name="genre" value="서부" <%if(dto.getGenre().contains("서부")){%>checked="checked"<% } %>/>서부</td>
+						   	<td><input type="checkbox" name="genre" value="스릴러" <%if(dto.getGenre().contains("스릴러")){%>checked="checked"<% } %>/>스릴러</td>
+						   	<td><input type="checkbox" name="genre" value="스포츠" <%if(dto.getGenre().contains("스포츠")){%>checked="checked"<% } %>/>스포츠</td>
+						   	<td><input type="checkbox" name="genre" value="시대극/사극" <%if(dto.getGenre().contains("시대극/사극")){%>checked="checked"<% } %>/>시대극/사극</td>
+						   	<td><input type="checkbox" name="genre" value="아동" <%if(dto.getGenre().contains("아동")){%>checked="checked"<% } %>/>아동</td>
+						   	<td><input type="checkbox" name="genre" value="애니메이션" <%if(dto.getGenre().contains("애니메이션")){%>checked="checked"<% } %>/>애니메이션</td>
+						    <td><input type="checkbox" name="genre" value="액션" <%if(dto.getGenre().contains("액션")){%>checked="checked"<% } %>/>액션</td>
+					    </tr>   
+						    <td><input type="checkbox" name="genre" value="어드벤처" <%if(dto.getGenre().contains("어드벤처")){%>checked="checked"<% } %>/>어드벤처</td>
+						    <td><input type="checkbox" name="genre" value="역사" <%if(dto.getGenre().contains("역사")){%>checked="checked"<% } %>/>역사</td>
+						   	<td><input type="checkbox" name="genre" value="에로" <%if(dto.getGenre().contains("에로")){%>checked="checked"<% } %>/>에로</td>
+						   	<td><input type="checkbox" name="genre" value="옴니버스" <%if(dto.getGenre().contains("옴니버스")){%>checked="checked"<% } %>/>옴니버스</td> 
+						   	<td><input type="checkbox" name="genre" value="코미디" <%if(dto.getGenre().contains("코미디")){%>checked="checked"<% } %>/>코미디</td>		                	             
+						    <td><input type="checkbox" name="genre" value="전기" <%if(dto.getGenre().contains("전기")){%>checked="checked"<% } %>/>전기</td>			                			                
+						    <td><input type="checkbox" name="genre" value="전쟁" <%if(dto.getGenre().contains("전쟁")){%>checked="checked"<% } %>/>전쟁</td>
+					    <tr>    
+						    <td><input type="checkbox" name="genre" value="종교" <%if(dto.getGenre().contains("종교")){%>checked="checked"<% } %>/>종교</td>                           			
+							<td><input type="checkbox" name="genre" value="재난" <%if(dto.getGenre().contains("재난")){%>checked="checked"<% } %>/>재난</td>
+						    <td><input type="checkbox" name="genre" value="청춘영화" <%if(dto.getGenre().contains("청춘영화")){%>checked="checked"<% } %>/>청춘영화</td>
+						    <td><input type="checkbox" name="genre" value="퀴어" <%if(dto.getGenre().contains("퀴어")){%>checked="checked"<% } %>/>퀴어</td>
+						    <td><input type="checkbox" name="genre" value="환타지" <%if(dto.getGenre().contains("환타지")){%>checked="checked"<% } %>/>환타지</td>
+						    <td><input type="checkbox" name="genre" value="학원물" <%if(dto.getGenre().contains("학원물")){%>checked="checked"<% } %>/>학원물</td>
+						</tr>
+					</table>
                 	<label for="genre" class="error"></label>      
                 </td>
            	  <tr>
@@ -290,7 +296,7 @@
               </tr>
               <tr>
                 <td>소개</td>
-                <td><textarea rows="10" style="width: 60%" name="summary"><%=dto.getSummary()%></textarea></td>
+                <td><textarea rows="10" style="width: 350px" name="summary"><%=dto.getSummary()%></textarea></td>
               </tr>
               <tr>
               	<td colspan="2">
