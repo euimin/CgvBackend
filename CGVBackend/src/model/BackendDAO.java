@@ -1196,10 +1196,11 @@ public class BackendDAO {
 	
 	///////////////////////////////////////////////////////////////////////////////////////
 
+	
 	/* 		MEMBERS
 	 * ID
-	 * NAME
 	 * PASSWORD
+	 * NAME
 	 * BIRTH
 	 * PHONE
 	 * EMAIL
@@ -1214,8 +1215,8 @@ public class BackendDAO {
 		String sql="SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT * FROM MEMBERS ";
 		//검색용 쿼리 추가
 		if(map.get("searchWord") !=null){
-			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
-		}		
+			sql+=" WHERE UPPER("+map.get("searchColumn")+ ") LIKE UPPER('%"+map.get("searchWord")+"%') ";
+		}
 		sql+=" ORDER BY REGIDATE DESC) T) WHERE R BETWEEN ? AND ?";
 		try{
 			psmt = conn.prepareStatement(sql);
@@ -1228,8 +1229,8 @@ public class BackendDAO {
 			while(rs.next()){
 				MembersDTO dto = new MembersDTO();
 				dto.setId(rs.getString(1));
+				dto.setName(rs.getString(3));
 				dto.setNickname(rs.getString(9));
-				dto.setName(rs.getString(2));
 				dto.setBirth(rs.getDate(4));
 				dto.setGender(rs.getString(8));
 				dto.setRegidate(rs.getDate(7));
@@ -1263,7 +1264,9 @@ public class BackendDAO {
 	
 	public MembersDTO membersSelectOne(String id) {
 		MembersDTO dto=null;
+		
 		String sql="SELECT ID, NAME, NICKNAME, BIRTH, PHONE, EMAIL, REGIDATE, GENDER, RPAD(substr(PASSWORD,1,1),length(PASSWORD),'*') FROM MEMBERS WHERE ID=? ";
+				
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
@@ -1271,14 +1274,14 @@ public class BackendDAO {
 			if(rs.next()){
 				dto = new MembersDTO();
 				dto.setId(rs.getString(1));
-				dto.setPassword(rs.getString(9));
-				dto.setNickname(rs.getString(3));
 				dto.setName(rs.getString(2));
+				dto.setNickname(rs.getString(3));
 				dto.setBirth(rs.getDate(4));
 				dto.setPhone(rs.getString(5));
 				dto.setEmail(rs.getString(6));
 				dto.setRegidate(rs.getDate(7));
 				dto.setGender(rs.getString(8));
+				dto.setPassword(rs.getString(9));
 			}			
 		} catch (SQLException e) {e.printStackTrace();}		
 		return dto;
@@ -1301,6 +1304,21 @@ public class BackendDAO {
 		
 		return affected;
 	}////////////////////update
+	
+	public int membersDelete(MembersDTO dto) {
+		
+		int affected=0;
+		String sql="DELETE FROM MEMBERS WHERE ID=? ";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getId());
+			affected = psmt.executeUpdate();
+			
+		} catch (SQLException e) {e.printStackTrace();}
+		
+		return affected;
+	}////////////////////delete
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////

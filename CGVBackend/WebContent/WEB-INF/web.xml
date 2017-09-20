@@ -34,14 +34,14 @@
     <url-pattern>/theaters/registerTheater.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>EditTeater</servlet-name>
+    <servlet-name>EditTheater</servlet-name>
     <servlet-class>controller.EditTheaterController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EditTeater</servlet-name>
+    <servlet-name>EditTheater</servlet-name>
     <url-pattern>/theaters/editTheater.cgv</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
     <servlet-name>FaqList</servlet-name>
     <servlet-class>controller.FaqController</servlet-class>
@@ -290,30 +290,53 @@
     <servlet-name>ReserveDelete</servlet-name>
     <url-pattern>/reserve/ReserveDelete.cgv</url-pattern>
   </servlet-mapping>
+  
+  
+  <!-- 회원관리 -->
   <servlet>
     <servlet-name>MembersList</servlet-name>
-    <servlet-class>controller.MemberListController</servlet-class>
+    <servlet-class>controller.MembersListController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MembersList</servlet-name>
-    <url-pattern>/MEMBERS/List.cgv</url-pattern>
+    <url-pattern>/user/members.List.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>MembersView</servlet-name>
-    <servlet-class>controller.MemberViewController</servlet-class>
+    <servlet-class>controller.MembersViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MembersView</servlet-name>
-    <url-pattern>/MEMBERS/View.cgv</url-pattern>
+    <url-pattern>/user/members.View.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>MembersEdit</servlet-name>
-    <servlet-class>controller.MemberEditController</servlet-class>
+    <servlet-class>controller.MembersEditController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MembersEdit</servlet-name>
-    <url-pattern>/MEMBERS/Edit.cgv</url-pattern>
+    <url-pattern>/user/members.Edit.cgv</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>MembersDelete</servlet-name>
+    <servlet-class>controller.MembersDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MembersDelete</servlet-name>
+    <url-pattern>/user/members.Delete.cgv</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 페이징용 컨텍스트 초기화 파라미터 -->
+  <context-param>
+  	<param-name>PAGE_SIZE</param-name>
+  	<param-value>3</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>BLOCK_PAGE</param-name>
+  	<param-value>3</param-value>
+  </context-param>
+  
+  
   <servlet>
     <servlet-name>ShowTimesList</servlet-name>
     <servlet-class>controller.ShowtimeController</servlet-class>
@@ -368,7 +391,7 @@
   </context-param>
   <context-param>
     <param-name>POSTER_DIRECTORY</param-name>
-    <param-value>E:\BEM\JAVA\Workspace\CGVBackend_git\CGVBackend\WebContent\images\posters</param-value>
+    <param-value>E:\BEM\JAVA\Workspace\CGVBackend_all(09080800)\WebContent\images\poster</param-value>
   </context-param>
   <welcome-file-list>
     <welcome-file>Index.jsp</welcome-file>

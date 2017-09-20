@@ -29,7 +29,7 @@
                 <li><a href="<c:url value='/lost/lost.list.cgv'/>">분실물 문의 관리</a></li>
               </ul>
             </li>
-            <li><a href="<c:url value='/MEMBERS/List.cgv'/>">회원 관리</a></li>
+            <li><a href="<c:url value='/user/members.List.cgv'/>">회원 관리</a></li>
             <li><a href="<c:url value='/login/Logout.jsp'/>"><u>로그아웃</u></a></li>
           </ul>
         </div><!--/.nav-collapse -->

@@ -33,63 +33,63 @@
       </div>
 
 	<!-- 실제 내용의 제목 표시 -->
-      <div class="page-header">
+<!--       <div class="page-header">
         <h1></h1>
-      </div>
+      </div> -->
     
     <!-- 실제 내용 작성 -->  
-
-          <table width="75%" bgcolor="gray" cellspacing="1" class="table table-condensed">
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">회원아이디</td>
+<span style="color:red;font-size:.8em;font-weight:bold">*표시된 부분을 수정할 수 있습니다.</span><br/>
+          <table width="75%" bgcolor="gray" cellspacing="1" class="table table-striped table-hover">
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">회원아이디</td>
 		                  			<td >
-		                  			${dto.id }
+		                  			${dto.id } 
 		                  			</td>
 		                  		</tr>                  	
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">비밀번호</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold"><a href="<c:url value='/user/members.Edit.cgv?id=${dto.id }'/>">비밀번호</a> *</td>
 		                  			<td >
 		                  			${dto.password}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">닉네임</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">닉네임</td>
 		                  			<td >
 		                  			${dto.nickname}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">회원이름</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">회원이름</td>
 		                  			<td >
 		                  			${dto.name}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">생년월일</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold">생년월일</td>
 		                  			<td>
 		                  			${dto.birth}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">휴대폰 번호</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold"><a href="<c:url value='/user/members.Edit.cgv?id=${dto.id }'/>">휴대폰 번호</a> *</td>
 		                  			<td>
 		                  			${dto.phone}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">이메일주소</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold"><a href="<c:url value='/user/members.Edit.cgv?id=${dto.id }'/>">이메일주소</a> *</td>
 		                  			<td>
 		                  			${dto.email}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">가입일</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold">가입일</td>
 		                  			<td>
 		                  			${dto.regidate}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">성별</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold">성별</td>
 		                  			<td>
 		                  			${dto.gender}
 		                  			</td>
@@ -97,8 +97,9 @@
 		                  		
 		                  		<tr bgcolor="white" align="center">
 		                  			<td colspan="2">
-		                  			<a href="<c:url value='/MEMBERS/Edit.cgv?id=${dto.id }'/>"><button class="btn btn-primary">수정</button></a>  
-		                  			<a href="<c:url value='/MEMBERS/List.cgv'/>"><button class="btn btn-danger">목록</button></a>
+		                  			<a type=button class="btn btn-default" href="<c:url value='/user/members.Edit.cgv?id=${dto.id }'/>">수정</a>   
+		                  			<a type=button class="btn btn-default" href="<c:url value='/user/members.Delete.cgv?id=${dto.id }'/>" OnClick="return confirm('정말 삭제하시겠습니까?')">삭제</a> 
+		                  			<a type=button class="btn btn-warning" href="<c:url value='/user/members.List.cgv'/>">목록</a>
 		                  			</td>
 		                  		</tr>                  	
 		        </table>

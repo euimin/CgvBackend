@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -31,77 +31,76 @@
       </div>
 
 	<!-- 실제 내용의 제목 표시 -->
-      <div class="page-header">
+<!--       <div class="page-header">
         <h1></h1>
-      </div>
+      </div> -->
     
     <!-- 실제 내용 작성 -->  
-    <form action="<c:url value='/MEMBERS/Edit.cgv?id=${dto.id }'/>" method="POST">
-    <div class="col-md-6">
-          <table width="75%" bgcolor="gray" cellspacing="1">
+    <form action="<c:url value='/user/members.Edit.cgv?id=${dto.id }'/>" method="POST">
+
+          <table width="75%" bgcolor="gray" cellspacing="1" class="table table-striped table-hover">
 		                                   	
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">회원 이름</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">회원 이름</td>
 		                  			<td >
 		                  			${dto.name}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">닉네임</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">닉네임</td>
 		                  			<td >
 		                  			${dto.nickname}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">회원 아이디</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">회원 아이디</td>
 		                  			<td >
 		                  			${dto.id }
 		                  			</td>
 		                  		</tr>  
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">비밀번호</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">비밀번호 *</td>
 		                  			<td >
-		                  			<input type="password" value="${dto.password }" name="password" style="width:50%"/>
-		                  			<span style="color:red;font-size:.8em;font-weight:bold">수정.삭제시 필요</span>
+		                  			<input type="password" value="${dto.password }" name="password" style="width:30%"/>
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">생년월일</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold">생년월일</td>
 		                  			<td>
 		                  			${dto.birth}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">휴대폰 번호</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">휴대폰 번호 *</td>
 		                  			<td >
-		                  			<input type="text"  name="phone" style="width:98%" value="${dto.phone }"/>
+		                  			<input type="text"  name="phone" style="width:30%" value="${dto.phone }"/>
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td width="30%" align="center">이메일 주소</td>
+		                  		<tr class="warning">
+		                  			<td width="30%" align="center" style="font-weight:bold">이메일 주소 *</td>
 		                  			<td >
-		                  			<input type="text"  name="email" style="width:98%" value="${dto.email }"/>
+		                  			<input type="text"  name="email" style="width:30%" value="${dto.email }"/>
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">가입일</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold">가입일</td>
 		                  			<td>
 		                  			${dto.regidate}
 		                  			</td>
 		                  		</tr>
-		                  		<tr bgcolor="white" >
-		                  			<td align="center">성별</td>
+		                  		<tr class="warning">
+		                  			<td align="center" style="font-weight:bold">성별</td>
 		                  			<td>
 		                  			${dto.gender}
 		                  			</td>
 		                  		</tr>
 		                  		<tr bgcolor="white" align="center">
 		                  			<td colspan="2">
-		                  			<input class="btn btn-primary" type="submit" value="수정"/> <%if(request.getAttribute("Error")!=null){ %>${Error}<%}%>
+		                  			<input type="submit" value="수정"/> <%if(request.getAttribute("Error")!=null){ %>${Error}<%}%>
 		                  			</td>
 		                  		</tr> 
 		        </table>
-        </div>
+
         </form>
 
     </div> <!-- 내용 끝 -->

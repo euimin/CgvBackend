@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.List"%>
-<%@page import="model.BackendDAO"%>
 
 
 <!DOCTYPE html>
@@ -34,20 +33,18 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>회원 관리</h1>
-        <p></p>
       </div>
 
 	<!-- 실제 내용의 제목 표시 -->
-      <div class="page-header">
+<!--       <div class="page-header">
         <h1></h1>
-      </div>
+      </div> -->
     
     <!-- 실제 내용 작성 -->  
-    <div class="col-md-6">
     
-          <table class="table table-striped">
+          <table class="table table-striped table-hover ">
             <thead>
-              <tr>
+              <tr bgcolor="lightblue">
                 <th>#</th>
                 <th>ID</th>
                 <th>Nick</th>
@@ -68,12 +65,12 @@
 					<c:otherwise>               	
 					<c:forEach var="member" items="${list }" varStatus="loop">
       
-					<tr align="center">		
-						<td></td>			                             
-						<td align="left"><a href="<c:url value='/MEMBERS/View.cgv?id=${member.id }'/>">${member.id }</a></td>
-						<td><a href="<c:url value='/MEMBERS/View.cgv?id=${member.id }'/>">${member.nickname }</a></td>
-						<td><a href="<c:url value='/MEMBERS/View.cgv?id=${member.id }'/>">${member.name }</a></td>
-						<td><a href="<c:url value='/MEMBERS/View.cgv?id=${member.id }'/>">${member.birth }</a></td>
+					<tr class="warning">		
+						<td><input type="checkbox" name="chkbox"></td>			                             
+						<td align="left"><a href="<c:url value='/user/members.View.cgv?id=${member.id }'/>">${member.id }</a></td>
+						<td><a href="<c:url value='/user/members.View.cgv?id=${member.id }'/>">${member.nickname }</a></td>
+						<td><a href="<c:url value='/user/members.View.cgv?id=${member.id }'/>">${member.name }</a></td>
+						<td><a href="<c:url value='/user/members.View.cgv?id=${member.id }'/>">${member.birth }</a></td>
 						<td>${member.gender }</td>
 						<td>${member.regidate }</td>
 					</tr>
@@ -86,17 +83,24 @@
                  
              
                  <!-- 검색UI -->
-		                      <form method="post">
+        <!-- <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button> -->
+
+		                      <form class="navbar-form navbar-left" role="search" method="post">
 		                        <table width="100%">
 		                         <tr align="center">
-		                          <td>
-		                          <select name="searchColumn">
+		                          <td><label for="select" class="col-lg-2 control-label">
+		                          <select class="form-control" name="searchColumn">
 		                           <option value="id">아이디</option>
 		                           <option value="name">이름</option>
 		                           <option value="nickname">닉네임</option>
-		                          </select>
-		                          <input type="text" name="searchWord"/>
-		                          <input class="btn btn-warning" type="submit" value="검색"/>
+		                          </select></label>
+		                          <label for="select" class="col-lg-3 control-label">
+		                          <input type="text" class="form-control" placeholder="Search" name="searchWord"/></label>
+		                          <label for="select" class="col-lg-1 control-label">
+		                          <button type="submit" class="btn btn-warning">검색</button></label>
 		                          </td>
 		                         </tr>
 		                        </table>
@@ -108,15 +112,14 @@
 			</table>
 			 
                <!-- 페이징 -->
-               <form action="/MEMBERS/List.cgv?nowPage=${nowPage }">
+               <form action="/user/members.List.cgv?nowPage=${nowPage }">
                 <table width="100%">
 		        	<tr align="center">
 		        		<td style="font-size:17px;">${pagingString }</td>
 		            </tr>
 		        </table>
-		        
+		        </form>
                   <br />
-      </div>
 
     </div> <!-- 내용 끝 -->
 
