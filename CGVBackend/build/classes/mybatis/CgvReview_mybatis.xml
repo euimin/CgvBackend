@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!-- namespace속성(필수):매퍼파일의 완전한 경로에서 .xml은 생략. ibatis와는 다르게 id값에 .을 사용 못함 -->
+<mapper namespace="mybatis.CgvReview_mybatis"> 
+  <select id="ReviewList" parameterType="java.util.Map" resultType="ReviewDto">
+  	SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT R.*,(SELECT TITLE FROM MOVIE WHERE MOVIE_CODE=R.MOVIE_CODE) title,(SELECT COUNT(*) FROM LIKES) likes FROM REVIEW R 
+  	<choose>
+  		<when test="searchColumn != null and searchColumn.equals('movie_code')">
+  			 JOIN MOVIE M ON R.MOVIE_CODE=M.MOVIE_CODE WHERE TITLE LIKE '%' || #{searchWord} || '%' 
+  		</when>
+  		<when test="searchColumn != null and searchColumn.equals('id')">
+  			 JOIN MEMBERS M ON R.ID=M.ID WHERE M.ID LIKE '%' || #{searchWord} || '%'
+  		</when>
+  		<when test="searchColumn != null and searchColumn.equals('content')">
+  			 WHERE CONTENT LIKE '%' || #{searchWord} || '%'
+  		</when>
+  		<when test="searchColumn != null and searchColumn.equals('writedate')">
+			WHERE WRITEDATE BETWEEN TO_DATE(#{searchDate1},'MM/DD/YYYY') AND TO_DATE(#{searchDate2},'MM/DD/YYYY')
+  		</when>
+  	</choose>
+  	) T) WHERE R BETWEEN #{start} AND #{end}
+  </select>
+  <select id="ReviewOne" parameterType="String" resultType="ReviewDto">
+  	SELECT R.*,(SELECT COUNT(*) FROM LIKES) likes,MV.TITLE,MB.NICKNAME FROM REVIEW R
+  	JOIN MOVIE MV ON R.MOVIE_CODE=MV.MOVIE_CODE JOIN MEMBERS MB ON R.ID=MB.ID WHERE REVIEW_NO=#{no}
+  </select>
+  <update id="ReviewUpdate" parameterType="ReviewDto">
+  	UPDATE REVIEW SET FEEDBACK=#{feedback}, CONTENT=#{content}, DIRECTIONPOINT=#{directionpoint,jdbcType=VARCHAR},
+  	STORYPOINT=#{storypoint,jdbcType=VARCHAR}, VISUALPOINT=#{visualpoint,jdbcType=VARCHAR}, ACTINGPOINT=#{actingpoint,jdbcType=VARCHAR},
+  	SOUNDTRACKPOINT=#{soundtrackpoint,jdbcType=VARCHAR}	WHERE REVIEW_NO=#{review_no} 
+  </update>
+  <delete id="ReviewDelete" parameterType="String">
+  	DELETE REVIEW WHERE REVIEW_NO=#{no}
+  </delete>
+  <delete id="ReviewCheckedDelete" parameterType="java.util.ArrayList">
+  	DELETE REVIEW WHERE REVIEW_NO IN 
+  	<foreach collection="list" item="item" separator="," open="(" close=")">
+  		#{item}
+  	</foreach>
+  </delete>
+  <select id="ReviewTotal" parameterType="java.util.Map" resultType="int">
+  	SELECT COUNT(*) FROM REVIEW 
+  	<choose>
+  		<when test="searchColumn != null and searchColumn.equals('movie_code')">
+  			R JOIN MOVIE M ON R.MOVIE_CODE=M.MOVIE_CODE
+			WHERE TITLE LIKE '%' || #{searchWord} || '%'
+  		</when>
+  		<when test="searchColumn != null and searchColumn.equals('id')">
+  			R JOIN MEMBERS M ON R.ID=M.ID
+			WHERE M.ID LIKE '%' || #{searchWord} || '%'
+  		</when>
+  		<when test="searchColumn != null and searchColumn.equals('content')">
+			WHERE CONTENT LIKE '%' || #{searchWord} || '%'
+  		</when>
+  		<when test="searchColumn != null and searchColumn.equals('writedate')">
+			WHERE WRITEDATE BETWEEN TO_DATE(#{searchDate1},'MM/DD/YYYY') AND TO_DATE(#{searchDate2},'MM/DD/YYYY')
+  		</when>
+  	</choose>
+  </select>
+</mapper>
