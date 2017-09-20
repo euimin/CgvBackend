@@ -75,7 +75,7 @@ public class MembersListController extends HttpServlet {
 		dao.close();
 		
 		//페이지용 문자열 생성]
-		String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/MEMBERS/List.cgv?");
+		String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/user/members.List.cgv?");
 		
 		//라]결과값이 있으면 리퀘스트 영역에 저장
 		req.setAttribute("list", list);
