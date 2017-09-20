@@ -43,7 +43,7 @@ public class EditMovieController extends HttpServlet{
 					mr.getParameter("summary"));
 			int affected = 0;
 			BackendDAO dao = new BackendDAO(req.getServletContext());
-			affected = dao.EditMovie(dto);
+			affected = dao.editMovie(dto);
 			dao.close();
 			if(affected==1){
 				if(mr.getFilesystemName("poster")!= null){

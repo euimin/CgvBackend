@@ -24,7 +24,7 @@ public class LoginController extends HttpServlet{
 		}
 		else{
 			req.setAttribute("error", "아이디와 비밀번호가 일치하지 않습니다.");
-			req.getRequestDispatcher("login/Login.jsp").forward(req, resp);
+			req.getRequestDispatcher(req.getContextPath()+"/login/Login.jsp").forward(req, resp);
 		}
 	}
 }

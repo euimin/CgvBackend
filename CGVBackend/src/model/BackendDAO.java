@@ -126,7 +126,7 @@ public class BackendDAO {
 	 RELEASEDATE
 	 WEBSITE
 	 SUMMARY*/
-	public int EditMovie(MovieDto dto) {
+	public int editMovie(MovieDto dto) {
 		int affected = 0;
 		String sql = "update movie set title=?, engtitle=?, poster=?, director=?, actor=?, genre=?, rating=?, "
 				+ "runningtime=?, country=?, releasedate=?, website=?, summary=? where movie_code=?";

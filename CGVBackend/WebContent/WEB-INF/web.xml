@@ -7,7 +7,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
-    <url-pattern>/Login.cgv</url-pattern>
+    <url-pattern>/login/login.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>RegisterMovie</servlet-name>
@@ -15,7 +15,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterMovie</servlet-name>
-    <url-pattern>/RegisterMovie.cgv</url-pattern>
+    <url-pattern>/movies/registerMovie.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>EditMovie</servlet-name>
@@ -23,7 +23,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>EditMovie</servlet-name>
-    <url-pattern>/EditMovie.cgv</url-pattern>
+    <url-pattern>/movies/editMovie.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>RegisterTheater</servlet-name>
@@ -31,7 +31,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterTheater</servlet-name>
-    <url-pattern>/RegisterTheater.cgv</url-pattern>
+    <url-pattern>/theaters/registerTheater.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>EditTeater</servlet-name>
@@ -39,16 +39,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>EditTeater</servlet-name>
-    <url-pattern>/EditTheater.cgv</url-pattern>
+    <url-pattern>/theaters/editTheater.cgv</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>RegisterSeat</servlet-name>
-    <servlet-class>controller.RegisterSeatController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RegisterSeat</servlet-name>
-    <url-pattern>/RegisterSeat.cgv</url-pattern>
-  </servlet-mapping>
+  
   <servlet>
     <servlet-name>FaqList</servlet-name>
     <servlet-class>controller.FaqController</servlet-class>
@@ -375,7 +368,7 @@
   </context-param>
   <context-param>
     <param-name>POSTER_DIRECTORY</param-name>
-    <param-value>E:\BEM\JAVA\Workspace\CGVBackend_all(09080800)\WebContent\images\poster</param-value>
+    <param-value>E:\BEM\JAVA\Workspace\CGVBackend_git\CGVBackend\WebContent\images\posters</param-value>
   </context-param>
   <welcome-file-list>
     <welcome-file>Index.jsp</welcome-file>

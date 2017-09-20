@@ -163,7 +163,7 @@
 		PARKINGINFO
 		SCREENS
 		SEATS   -->
-		<form id="frm" method="post" action="<c:url value='/EditTheater.cgv'/>">
+		<form id="frm" method="post" action="<c:url value='/theaters/editTheater.cgv'/>">
 		<input type="hidden" name="theater_code" value="${dto.theater_code}"/>
     	<table class="table">
             <tbody>

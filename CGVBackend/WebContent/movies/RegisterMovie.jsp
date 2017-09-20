@@ -130,7 +130,7 @@
 	private String website;
 	private String summary;
      -->
-     <form id="frm" action="<c:url value='/RegisterMovie.cgv'/>" method="post" enctype="multipart/form-data">
+     <form id="frm" action="<c:url value='/movies/registerMovie.cgv'/>" method="post" enctype="multipart/form-data">
      	<table class="table" style="width: 70%">
             <tbody>
               <tr>

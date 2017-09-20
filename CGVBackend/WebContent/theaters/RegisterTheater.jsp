@@ -146,7 +146,7 @@
 		PARKINGINFO
 		SCREENS
 		SEATS   -->
-		<form id="frm" method="post" action="<c:url value='/RegisterTheater.cgv'/>">
+		<form id="frm" method="post" action="<c:url value='/theaters/registerTheater.cgv'/>">
     	<table class="table">
             <tbody>
               <tr>

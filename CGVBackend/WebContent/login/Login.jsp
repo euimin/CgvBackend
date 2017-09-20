@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form-signin" action="<c:url value='/Login.cgv'/>" method="post">
+		<form class="form-signin" action="<c:url value='/login/login.cgv'/>" method="post">
 			<h2 class="form-signin-heading">관리자 로그인</h2>
 			<label for="inputId" class="sr-only">아이디</label>
 			<input name="id" type="text" id="inputId" class="form-control" placeholder="아이디" required autofocus>		

@@ -143,7 +143,7 @@
 	private String website;
 	private String summary;
      -->
-     <form id="frm" action="<c:url value='/EditMovie.cgv'/>" method="post" enctype="multipart/form-data">
+     <form id="frm" action="<c:url value='/movies/editMovie.cgv'/>" method="post" enctype="multipart/form-data">
      	<input type="hidden" name="movie_code" value="<%=dto.getMovie_code()%>"/>
      	<input type="hidden" name="originalFile" value="<%=dto.getPoster()%>"/>
      	<table class="table" style="width: 70%">
