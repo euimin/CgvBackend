@@ -19,7 +19,7 @@ public class ReserveDeleteController extends HttpServlet{
 		String code=req.getParameter("code");
 		if(code != null){
 			ReserveDAO dao=new ReserveDAO(req.getServletContext());
-			int sucOrfail=dao.delete(code);
+			int sucOrfail=dao.deleteReserve(code);
 			
 			req.setAttribute("suc_fail", sucOrfail);
 			req.setAttribute("where", "DLT");

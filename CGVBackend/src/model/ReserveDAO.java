@@ -112,7 +112,7 @@ public class ReserveDAO {
 	}
 	
 	//총 레코드 수 얻기용
-	public int getTotalRecordCount(Map map) {
+	public int getTotalRecordCountReserve(Map map) {
 	      int totalCount = 0;
 	      String sql = "SELECT COUNT(*) FROM "
 	      		+ "(SELECT R.CODE,S.SCREENING_CODE,R.ID,R.PEOPLE, R.SEAT, R.SEATNUMBER, "
@@ -142,7 +142,7 @@ public class ReserveDAO {
 	   }//getTotalRecordCount
 	
 	/*좌석 선택용 쿼리*/
-	public List<ReserveDTO> seatSelect(String m_title, String s_screeningdate, String s_time){
+	/*public List<ReserveDTO> seatSelect(String m_title, String s_screeningdate, String s_time){
 		List<ReserveDTO> seatlist = new ArrayList<ReserveDTO>();
 		String sql="SELECT R.CODE,S.SCREENING_CODE,R.ID,R.PEOPLE, R.SEAT, R.SEATNUMBER, "
 				+ "R.RESERVEDATE ,S.SCREENINGDATE, S.TIME, M.TITLE, T.NAME FROM RESERVE R "
@@ -166,7 +166,7 @@ public class ReserveDAO {
 				e.printStackTrace();
 		}
 		return seatlist;
-	}
+	}*/
 
 	public ReserveDTO selectReserveOne(String code) {
 		ReserveDTO dto=new ReserveDTO();
@@ -202,7 +202,7 @@ public class ReserveDAO {
 		return dto;
 	}
 
-	public int insert(ReserveDTO dto) {
+	/*public int insertReserve(ReserveDTO dto) {
 		int affected=0;
 		String sql="insert into reserve values(SEQ_RESERVECODE.nextval,(SELECT MAX(screening_code) FROM screening),?,?,?,?,SYSDATE) ";
 		try {
@@ -218,8 +218,8 @@ public class ReserveDAO {
 		}
 		return affected;
 	}
-
-	public int delete(String code) {
+*/
+	public int deleteReserve(String code) {
 		int affected=0;
 		String sql="delete reserve where code=? ";
 		try {
