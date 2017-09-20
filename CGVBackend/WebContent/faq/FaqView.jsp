@@ -84,8 +84,8 @@
 						<tr align="center">
 							<td colspan="2"><a
 								href="<c:url value='/faq/FaqEdit.cgv?no=${dto.no}&nowPage=${param.nowPage}'/>"
-								id="update"><button class="btn btn-primary">수정</button></a>  <a href="javascript:isDelete()" id="delete"><button class="btn btn-success">삭제</button></a>  <a
-								href='<c:url value="/faq/Faq.cgv?nowPage=${param.nowPage}"/>'><button class="btn btn-danger">목록</button></a></td>
+								id="update">수정</a> | <a href="javascript:isDelete()" id="delete">삭제</a> | <a
+								href='<c:url value="/faq/Faq.cgv?nowPage=${param.nowPage}"/>'>목록</a></td>
 						</tr>
 					</tbody>
 				</table>
