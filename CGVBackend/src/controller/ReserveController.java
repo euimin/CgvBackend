@@ -44,7 +44,7 @@ public class ReserveController extends HttpServlet {
 		
 		 //페이징을 위한 로직 시작]
 	      //전체 레코드 수
-	       int totalRecordCount = dao.getTotalRecordCount(map);
+	       int totalRecordCount = dao.getTotalRecordCountReserve(map);
 	       System.out.println("totalRecordCount컨트롤러"+totalRecordCount);
 	      //페이지 사이즈
 	      int pageSize = Integer.valueOf(req.getServletContext().getInitParameter("PAGE_SIZE"));

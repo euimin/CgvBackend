@@ -96,7 +96,7 @@
 		                           <option value="nickname">닉네임</option>
 		                          </select>
 		                          <input type="text" name="searchWord"/>
-		                          <input type="submit" value="검색"/>
+		                          <input class="btn btn-warning" type="submit" value="검색"/>
 		                          </td>
 		                         </tr>
 		                        </table>

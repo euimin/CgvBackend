@@ -1,0 +1,48 @@
+일단 올려진 부분에서 자기 부분이 최신이 아니신 분들은 죄송하지만 수정하시면서 최신본으로 바꿔주시면 감사하겠습니다.
+src파일 패키지 부분은 제가 바꿔서 정리하도록 하겠습니다.
+각자 해주실 부분은,
+
+1. 서블릿 요청명 변경
+각 요청명은 "/WebContent의 폴더명과 일치/요청명.cgv"통일해 주시면 감사하겠습니다.
+
+등록 : register메뉴명.cgv (예: /movies/registerMovie.cgv)
+수정 : edit메뉴명.cgv (예: /movies/editMovie.cgv)
+삭제 : delete메뉴명.cgv (예: /movies/deleteMovie.cgv)
+목록보기 : 메뉴명List.cgv (예: /movies/movieList.cgv)
+상세보기 : 메뉴명View.cgv (예: /movies/movieView.cgv)
+
+처럼 기능에 따라 분류해 주시면 되겠고, 다른 분들과 중복되지 않도록 각 메뉴명을 포함해주시기 바랍니다.
+해당 요청명이 부분을 모두 바꿔주셔야 합니다. (web.xml, jsp파일, controller 파일 등)
+
+BackendDAO메소드 명도 같은 규칙 적용시켜주세요(이름만)
+
+2. 각 jsp페이지에서 포함되어야 할 것.
+1) 부트스트랩 틀
+2) <%@ include file="/loginCheck.jsp" %>
+3) <!-- JQuery -->
+  	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+  	<script>
+  		$(function(){
+  			//메뉴 표시를 위한 코드
+			var page = location.href;
+		    $('#menubar li a').each(function(){
+		    	var href = $(this).attr('href').split("/");
+		    	var menu = href[2];	     
+		        if (page.indexOf(menu) != -1) {
+		            $(this).parent().addClass('active');
+		        } else {
+		            $(this).parent().removeClass('active');
+		        }
+		    });
+  		});
+	</script>
+
+2)번은 로그인이 되었는 지 확인 하는 코드입니다. 단순 스크립트릿이나 다른 페이지로 넘어가기 위한 jsp페이지에는
+포함 시킬 필요 없습니다.
+
+3)번은 상단메뉴 활성화 시키는데 필요한 코드입니다. 해당 페이지에서 JQUERY를 사용하시는 경우에는 코드 부분만
+복사해서 JQUERY진입점 안에 포함시켜 주시면 됩니다.
+
+위치가 헷갈리시는 분들은 movies/Movie.jsp를 참고해 주시면 됩니다.
+이상 헷갈리시는 게 있으시면 그냥 저한테 물어봐 주세요.
+프론트엔드z 진행되는 대로 알려드리겠습니다. 감사합니다.
