@@ -103,11 +103,11 @@ var checkDelete = function(){
 								<option value="[제목으로검색]">제목으로검색</option>
 								<option value="[날짜로검색]">날짜로검색</option>
 								<option value="기타">기타</option>
-							</select> <input class="btn btn-warning" type="text" value="검색">
+							</select> <input type="text" value="검색" maxlength="60" size="70">
 							<a href="<c:url value='/lost/lostarticle_write.jsp'/>">
-							<input class="btn btn-primary" type="button" name="Write" value='글작성' /></a> 
+							<input type="button" name="Write" value='글작성' "/></a> 
 						
-							<input class="btn btn-success" type="button" name="Delete" value='삭제' onclick="checkDelete()" />
+							<input type="button" name="Delete" value='삭제' onclick="checkDelete()" />
 							
 						</div>
 					</div>

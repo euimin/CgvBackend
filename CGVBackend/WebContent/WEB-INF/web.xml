@@ -120,7 +120,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>NewsListController</servlet-name>
-    <url-pattern>/news/news.list.cgv</url-pattern>
+    <url-pattern>/News/newslist.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>WriteNewsController</servlet-name>

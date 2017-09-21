@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/loginCheck.jsp" %>
+<%@ include file="/loginCheck.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +19,14 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"
 	type="text/javascript"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
-</head>
+<script>
 
+	
+
+
+
+</script>
+</head>
 <script>
 
 $(function() {
@@ -44,9 +50,9 @@ $(function() {
 				$(":checkbox:first").val([""]);
 			}
 		}
-	});
+	});/////////////////체크박스 체크 확인 
 	
-	//메뉴 표시를 위한 코드
+	
 	var page = location.href;
     $('#menubar li a').each(function(){
     	var href = $(this).attr('href').split("/");
@@ -56,9 +62,33 @@ $(function() {
         } else {
             $(this).parent().removeClass('active');
         }
-    });
+    });///////////////////메뉴 표시를 위한 코드
+    
+    /* $("#selectserch").change(function(){
+    	alert($("#selectserch option:selected").val());
+    	$("#nonespan").find("td").each(function(){
+    		$(this).remove();
+    	});
+    	$.ajax(
+    		   {url:"<c:url value=''/>",
+    		    type:"post",
+    		    dataType:"text",
+    		    data:"selectserch="+$("selectserch option:selected").val(),
+    		    success:function(data){
+    		    	if(data==""){
+    		    		alert("data는 null 입니다.");
+    		    	}
+    		    	
+    		    },
+    			
+    	});///////////////셀렉트 박스 검색 ajax */
+    	
+    
+    
 });
 
+
+/* 체크박스 전체 삭제 처리 */
 var checkDelete = function(){
 	var checkedNo = document.getElementsByName("checkedNo");
 	var checkString="";
@@ -80,6 +110,9 @@ var checkDelete = function(){
 	}
 };
 
+
+	
+
 </script>
 <body role="document">
 
@@ -92,68 +125,65 @@ var checkDelete = function(){
 		<!-- 실제 내용의 제목 표시 -->
 		<div class="page-header"></div>
 		<h2 class="sub-header">뉴스/공지 관리</h2>
-		<form action="#" method="posts">
-			<div class="table-responsive">
-				<div align="center">
-					<div align="right">
-						<div>
-							<select>
-								<option value="[행사/이벤트]">행사/이벤트</option>
-								<option value="[시스템점검]">시스템점검</option>
-								<option value="[극장]">극장</option>
-								<option value="기타">기타</option>
-							</select> <input class="btn btn-warning" type="text" value="검색">
-							<a href="<c:url value='/news/Write.jsp'/>">
-							<input class="btn btn-primary" type="button" name="Write" value='글작성' "/></a> 
-							<input class="btn btn-success" type="button" name="Delete" value='삭제' onclick="checkDelete()"/>
 
-						</div>
+		<div class="table-responsive">
+			<div align="center">
+				<div align="right">
+					<div>
+						<form method="get" action="<c:url value='/News/newslist.cgv'/>">
+							<select name="searchColumn">
+								<option value="TITLE">제목</option>
+								<option value="CONTENT">내용</option>
+							</select> <input type="text" maxlength="60" size="70"
+								placeholder="검색어를 입력하세요" name="searchWord"> 
+								<input type="submit" value='검색' "/>
+						</form>
+						<form action="#" method="post">
+							<a href="<c:url value='/news/Write.jsp'/>"> <input
+								type="button" name="Write" value='글작성' "/></a> <input type="button"
+								name="Delete" value='삭제' onclick="checkDelete()" />
+						</form>
 					</div>
 				</div>
-				</from>
-				<table width=100%>
-					<tr align="right">
-
-					</tr>
-				</table>
-
-				<table class="table table-striped">
-					<thead>
-						<th><input type="checkbox" value="all" /></th>
-						<th>번호</th>
-						<th>구분</th>
-						<th>제목</th>
-						<th>등록일</th>
-						<th>조회수</th>
-						</tr>
-					</thead>
-					<%-- <c:if test="${empty list}" var="list">
-					<tr bgcolor="white" align="center">
-						<td colspan="6">등록된 자료가 없습니다</td>
-					</tr>
-					</c:if> --%>
-					<tbody>
-					
-						<c:forEach var="list" items="${list}" varStatus="loop">
-							<tr>
-								<td><input type="checkbox" name="checkedNo" value="${list.no}" /></td>
-								<td>${totalRecordCount -(((nowPage -1)* pageSize)+ loop.index)}</td>
-								<td>${list.category}</td>
-								<td><a href="<c:url value='/Contentview.cgv?no=${list.no}'/>">${list.title}</a></td>
-								<td>${list.postdate}</td>
-								<td>${list.visitcount}</td>
-						
-						</tr>
-						</c:forEach>
-					</tbody>
-					<table width="100%">
-					<tr align="center">
-						<td><b>${pagingString}</b> </td>
-					</tr>
-					
-				</table>
-				</table>
 			</div>
+			<table class="table table-striped">
+				<thead>
+					<th><input type="checkbox" value="all" /></th>
+					<th>번호</th>
+					<th>구분</th>
+					<th>제목</th>
+					<th>등록일</th>
+					<th>조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${empty list}">
+							<tr bgcolor="white" align="center">
+								<td colspan="6">등록된 자료가 없어요</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							 <c:forEach var="list" items="${list}" varStatus="loop">
+									<tr>
+										<td><input type="checkbox" name="checkedNo" value="${list.no}" /></td>
+										<td>${totalRecordCount -(((nowPage -1)* pageSize)+ loop.index)}</td>
+										<td>${list.category}</td>
+										<td><a href="<c:url value='/Contentview.cgv?no=${list.no}'/>">${list.title}</a></td>
+										<td>${list.postdate}</td>
+										<td>${list.visitcount}</td>
+									</tr>
+								</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
+				<table width="100%">
+					<tr align="center">
+						<td><b>${pagingString}</b></td>
+					</tr>
+				</table>
+			</table>
+		</div>
 	</div>
 	</div>
 	</div>

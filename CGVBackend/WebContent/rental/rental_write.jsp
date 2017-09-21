@@ -5,137 +5,100 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글쓰기</title>
-<style>
+<title>Insert title here</title>
 
-</style>
 <!-- jQuery CDN -->
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"
+	type="text/javascript"></script>
 <!-- 달력 UI CSS/CDN -->
 <link rel="stylesheet"
-   href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <script>
-
-
-
-	
-	function wirte(obj){
-		
-		if(obj.theater.selectedIndex === 0){
-			alert("영화관을 선택해주세요");
-			obj.movies.focus();
-			return false;
-		}
-		
-		/* else if(obj.address.selectedIndex === 0){
-			alert("지역을 입력해주세요");
-			obj.address.focus();
-			return false;
-		}
-		else if(obj.cgv.selectedIndex === 0){
-			alert("CGV를 입력해주세요");
-			obj.cgv.focus();
-			return false;
-		} */
-		else if(obj.leasedate.selectedIndex === 0){
-			alert("날짜를 입력해주세요");
-			obj.moviedate.focus();
-			return false;
-		}
-		else if(obj.hour.selectedIndex === 0){
-			alert("시간을 선택해주세요");
-			obj.movietime.focus();
-			return false;
-		}
-		else if(obj.moviemember.value.length === 0){
-			alert("희망인원을 선택해주세요");
-			obj.moviemember.focus();
-			return false;
-		}
-		
-		else if(obj.moviecontent.value.length === 0){
-			alert("내용을입력해주세요");
-			obj.moviecontent.focus();
-			return false;
-		}
-		else if(obj.rentalname.value.length === 0){
-			alert("문의자명을 입력해주세요");
-			obj.rentalname.focus();
-			return false;
-		}
-		else if(obj.tel.value.length === 0){
-			alert("연락 가능한번호를 입력해주세요");
-			obj.tel.focus();
-			return false;
-		}
-		
-		else if(obj.email.value === ""){
-			alert("이메일을 입력해주세요 ");
-			obj.email.focus();
-			return false;
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}///////////
-	
-    function Submit(obj) {
-        //alert(obj);
-        if (obj === undefined) {
-            obj = document.forms[0];
-        }
-       
-        else if (wirte(obj) == true) 
-        	obj.submit();
-    }
-	
-	
-	
-		$(function() {
-			$("#datepicker").datepicker({
-				dateFormat:"yy-mm-dd"
-			});
+	$(function() {
+		$("#datepicker").datepicker({
+			dateFormat : "yy-mm-dd"
 		});
-		
-		
 
+		//메뉴 표시를 위한 코드
+		var page = location.href;
+		$('#menubar li a').each(function() {
+			var href = $(this).attr('href').split("/");
+			var menu = href[2];
+			if (page.indexOf(menu) != -1) {
+				$(this).parent().addClass('active');
+			} else {
+				$(this).parent().removeClass('active');
+			}
+		});
 
+		$("#addressid").change(function() {
+				
+					$("#returncgv").find("option").each(function() {
+						$(this).remove();
+					});
+
+					$.ajax({
+						url : "<c:url value='/ajax.rental.cgv'/>",
+						type : "post",
+						dataType : "text",
+						data : "address="+ $("#addressid option:selected").val(),
+						success : function(data) {
+							
+							if (data == null) {
+								alert("데이터는 null입니다");
+							}
+							$("#returncgv").html(data);
+							
+						}
+					});
+				});
+
+	});/////////////////function()
 </script>
+
 </head>
-
 <body>
-	<table summary="글쓰기 전체 테이블">
-		<form name="Write" method="post" action="<c:url value='/rental.Write.cgv'/>" ><!-- onclick="Submit(this.form)" -->
 
-			<colgroup>
-				<col width="20%">
-				<col width="80%">
-			</colgroup>
+	<!--고정네비바 시작  -->
+	<jsp:include page="/template/TopMenu.jsp" />
+	<!--고정네비바 끝  -->
+	<div class="container">
+		<form class="form-horizontal" name="Write" method="post"
+			action="<c:url value='/rental.Write.cgv'/>"
+			onclick="Submit(this.form)">
+			<fieldset>
+				<h1>대관/대여문의</h1>
 
-			<table summary="테이블 구성" align="center">
-				<caption>
-					<b>단체/대관 문의</b>
-				</caption>
-				<tr>
+				<!-- Form Name -->
+				<legend>Form Name</legend>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="selectbasic">영화관선택</label>
+					<div class="col-md-5">
+						<select id="selectbasic" name="theater" class="form-control">
+							<option value="일반관">일반관</option>
+						</select>
+					</div>
+				</div>
 
-					<td><b>영화관선택</b></td>
-					<td><select name="theater">
-							<option value="특별관/일반관 선택">특별관/일반관 선택</option>
-							<option value="[일반관]">일반관</option>
-							<option value="[특별관]">특별관</option>
-
-					</select></td>
-				</tr>
-				<!--<tr>
-					<td><b>지역선택</b></td>
-					<td><select name="address">
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="selectbasic">지역선택</label>
+					<div class="col-md-5">
+						<select id="addressid" name="address" class="form-control">
 							<option value="지역선택">지역선택</option>
 							<option value="강원">강원</option>
 							<option value="경기">경기</option>
@@ -150,26 +113,33 @@
 							<option value="전라">전라</option>
 							<option value="제주">제주</option>
 							<option value="충청">충청</option>
-					</select></td>
-				/tr>-->
-				
-				<!--  <tr>
-					<td><b>CGV선택</b></td>
-					<td><select name="cgv">
-							<option value="CGV선택">CGV선택</option>
-							<option value="CGV강릉">CGV강릉</option>
-							<option value="CGV원주">CGV원주</option>
-							<option value="CGV춘천명동">CGV춘천명동</option>
-					</select></td>
-				</tr>
-				-->
-				<tr>
-					<td><b>관람희망일</b></td>
-					<td><input type="text" id="datepicker" name="leasedate"/></td>
-				</tr>
-				<tr>
-					<td><b>시간선택</b></td>
-					<td><select name="hour">
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="selectbasic">CGV선택</label>
+
+					<div class="col-md-5">
+						<select id="returncgv" name="cgv" class="form-control" >
+						 	<option>지역을선택하세요.</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">관람희망일</label>
+					<div class="col-md-5">
+						<input id="datepicker" name="leasedate" type="text"
+							placeholder="관람희망일을 선택해주세요." class="form-control input-md">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="selectbasic">시간선택</label>
+					<div class="col-md-5">
+						<select id="selectbasic" name="hour" class="form-control">
 							<option value="0">시간선택</option>
 							<option value="6">6시 이전</option>
 							<option value="7">7시</option>
@@ -190,44 +160,73 @@
 							<option value="22">22시</option>
 							<option value="23">23시</option>
 							<option value="23">23시 이후</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td><b>희망 인원</b></td>
-					<td><input type=text name="people" size="7">&nbsp;<b>(명)</b></td>
-				</tr>
-				<tr>
-					<td>내 용</td>
-					<td><textarea name=content rows="20" cols="100"></textarea></td>
-				</tr>
-				<tr>
-					<td><b>문의자명</b></td>
-					<td><input type=text name=name></td>
-				</tr>
-				<tr>
-					<td><b>연락처</b></td>
-					<td><input type=text name=phone></td>
-				</tr>
-				<tr>
-					<td><b>이메일</b></td>
-					<td><input type=text name=email></td>
-				</tr>
-				<tr>
-					<td colspan=2><hr size=1></td>
-				</tr>
+						</select>
+					</div>
+				</div>
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">희망 인원</label>
+					<div class="col-md-5">
+						<input id="textinput" name="people" type="text"
+							placeholder="인원을 입력하세요(숫자만입력)" class="form-control input-md">
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">내 용</label>
+					<div class="col-md-4">
+						<textarea id="textinput" name="content" type="text"
+							placeholder="내용을 입력해주세요." class="form-control input-md" rows="5"></textarea>
+
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">문의자명</label>
+					<div class="col-md-4">
+						<input id="textinput" name="name" type="text"
+							placeholder="문의자명을 입력해주세요" class="form-control input-md">
+
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">연락처</label>
+					<div class="col-md-5">
+						<input id="textinput" name="phone" type="text"
+							placeholder="연락처를 입력해주세요(-제외)" class="form-control input-md">
+
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">이메일</label>
+					<div class="col-md-4">
+						<input id="textinput" name="email" type="text"
+							placeholder="Email@mail.co.kr" class="form-control input-md">
+
+					</div>
+				</div>
 				<tr>
 					<td colspan="2">
 						<div align="center">
-							<input class="btn btn-primary" type="submit" value="등록" onclick="Submit(this.form)"/>&nbsp;&nbsp; <a
-								href="<c:url value='/rental.list.cgv'/>"><input
-								type="button" class="btn btn-danger" value="뒤로"></a>
-							</form>
-							
-						</div>
-					</td>
-				</tr>
-			</table>
-	</table>
+							<input type="submit" value="등록" onclick="Submit(this.form)" />&nbsp;&nbsp;
+							<a href="<c:url value='/rental.list.cgv'/>"><input
+								type="button" value="뒤로"></a>
+		</form>
 
+	</div>
+	</td>
+	</tr>
+
+
+	</fieldset>
+	</form>
+	</div>
+	</div>
 </body>
 </html>

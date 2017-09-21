@@ -11,6 +11,21 @@ public class RentalDto {
 	private String phone;
 	private String email;
 	private String writedate;
+	private String address;
+	private String cgv;
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getCgv() {
+		return cgv;
+	}
+	public void setCgv(String cgv) {
+		this.cgv = cgv;
+	}
 	
 	public String getWritedate() {
 		return writedate;

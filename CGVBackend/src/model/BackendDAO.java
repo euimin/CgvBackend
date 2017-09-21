@@ -559,17 +559,26 @@ public class BackendDAO {
 		return totalRecordCount;
 	}//////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////
-	public List<SupportPostDto> selectNewsList(int start, int end) {
+public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
+		
+		List<SupportPostDto> list = new Vector();
 
-		List<SupportPostDto> records = new Vector<SupportPostDto>();
-
-		String sql = "select * from (select t.*,rownum r from (SELECT * FROM news ORDER BY NO DESC) t) where r between ? and ?";
+		String sql="SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT * FROM NEWS ";
+		//검색용 쿼리 추가
+		if(map.get("searchWord") !=null){
+			
+			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
+		}		
+		sql+="ORDER BY POSTDATE DESC) T) WHERE R BETWEEN ? AND ?";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, start);
-			psmt.setInt(2, end);
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 			rs = psmt.executeQuery();
+			
+		
+			
 			while (rs.next()) {
 				
 				SupportPostDto dto = new SupportPostDto();
@@ -578,19 +587,20 @@ public class BackendDAO {
 				dto.setTitle(rs.getString(3));
 				dto.setPostdate(rs.getDate(4));
 				dto.setVisitcount(rs.getString(5));
-				records.add(dto);	
+				list.add(dto);	
 			}
 		} catch (Exception e) {
 			e.getMessage();
+			System.out.println("에러발생 news list DAO");
 		}
-		return records;
+		return list;
 	}/////////////////////////////selectList
 	
 	
 	
 	public int insertNews(SupportPostDto dto){
 		int suc =0;
-		String sql = "INSERT INTO News VALUES(SEQ_NEWS.nextval,?,?,SYSDATE,SEQ_CLICK_COUNT.nextval,?)";
+		String sql = "INSERT INTO News VALUES(SEQ_NEWSNO.nextval,?,?,SYSDATE,SEQ_CLICK_COUNT.nextval,?)";
 		try {
 		
 			psmt = conn.prepareStatement(sql);
@@ -708,9 +718,14 @@ public class BackendDAO {
 		return affected;
 	}
 	//총 레코드 수 얻기용]
-	public int getTotalNewsRecord(){
+	public int getTotalNewsRecord(Map<String,Object> map){
 		int total =0;
-		String sql="SELECT COUNT(*) FROM news";
+		String sql="SELECT COUNT(*) FROM NEWS";
+		if (map.get("searchWord") != null) {
+
+			sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}//////////
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -1414,6 +1429,32 @@ public class BackendDAO {
 			e.printStackTrace();
 		}
 		return affected;
-	}
+	}/////////////////////
+	
+	public List<RentalDto> returncgv(RentalDto dto1) {
+		List<RentalDto> list = new Vector<RentalDto>();
+		RentalDto dto = null;
+		
+		String sql = "SELECT NAME FROM THEATER WHERE REGION =?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto1.getAddress());
+			rs = psmt.executeQuery();
+			System.out.println("return cvas안 ");
+			while(rs.next()){
+				
+				dto = new RentalDto();
+				System.out.println("while문 안");
+				dto.setCgv(rs.getString(1));
+				list.add(dto);
+			}//////////////
+			
+		} catch (SQLException e) {
+			System.out.println("catch문 진입");
+			e.printStackTrace();
+		}//////////////
+		return list;
+		
+	}/////////////////
 	
 }//class
