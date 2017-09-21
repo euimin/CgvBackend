@@ -22,13 +22,13 @@ public class EditMovieController extends HttpServlet{
 			movie_code = mr.getParameter("movie_code");
 			String[] genres = mr.getParameterValues("genre");
 			String genreStr = "";
-			for(String genre: genres) genreStr += genre+",";
-			genreStr = genreStr.substring(0, genreStr.length()-1);
+			for(String genre: genres) genreStr += genre+", ";
+			genreStr = genreStr.substring(0, genreStr.length()-2);
 			
 			String[] countries = mr.getParameterValues("country");
 			String countryStr = "";
-			for(String country: countries) countryStr += country+",";
-			countryStr = countryStr.substring(0, countryStr.length()-1);
+			for(String country: countries) countryStr += country+", ";
+			countryStr = countryStr.substring(0, countryStr.length()-2);
 			
 			String poster = mr.getFilesystemName("poster");
 			if(poster==null){

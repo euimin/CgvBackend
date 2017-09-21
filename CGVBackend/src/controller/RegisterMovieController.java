@@ -20,13 +20,13 @@ public class RegisterMovieController extends HttpServlet{
 		if(mr != null){ //업로드 성공 시
 			String[] genres = mr.getParameterValues("genre");
 			String genreStr = "";
-			for(String genre: genres) genreStr += genre+",";
-			genreStr = genreStr.substring(0, genreStr.length()-1);
+			for(String genre: genres) genreStr += genre+", ";
+			genreStr = genreStr.substring(0, genreStr.length()-2);
 			
 			String[] countries = mr.getParameterValues("country");
 			String countryStr = "";
-			for(String country: countries) countryStr += country+",";
-			countryStr = countryStr.substring(0, countryStr.length()-1);
+			for(String country: countries) countryStr += country+", ";
+			countryStr = countryStr.substring(0, countryStr.length()-2);
 			
 			MovieDto dto = new MovieDto(
 					null, mr.getParameter("title"), mr.getParameter("engtitle"), mr.getFilesystemName("poster"),

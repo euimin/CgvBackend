@@ -277,7 +277,7 @@
               </tr>
               <tr>
               	<td colspan="2">
-              		<input class="btn btn-success" type="button" value="취소"/>&nbsp;&nbsp; 
+              		<input class="btn btn-success" type="button" value="취소"/> 
               		<input class="btn btn-primary" type="button" value="등록하기"/>${registerError}
               	</td>
               </tr>
