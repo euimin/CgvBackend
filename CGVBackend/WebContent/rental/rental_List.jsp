@@ -89,11 +89,11 @@ var checkDelete = function(){
 								<option value="[시스템점검]">시스템점검</option>
 								<option value="[극장]">극장</option>
 								<option value="기타">기타</option>
-							</select> <input class="btn btn-warning" type="text" value="검색">
-							<a
-								href="<c:url value='/rental/rental_write.jsp'/>"><input
-								type="button" class="btn btn-primary" name="Write" value='글작성' "/></a>
-								<input class="btn btn-success" type="button" name="Delete" value='삭제' onclick="checkDelete()"/>
+							</select> <input type="text" value="검색" maxlength="60" size="70" placeholder="검색어를 입력하세요">
+							<input type="button" name="serch" value='검색'"/>
+							<a href="<c:url value='/rental/rental_write.jsp'/>"><input
+								type="button" name="Write" value='글작성' "/></a>
+								<input type="button" name="Delete" value='삭제' onclick="checkDelete()"/>
 
 						</div>
 					</div>
@@ -125,11 +125,11 @@ var checkDelete = function(){
 								<td><input type="checkbox" name="checkedNo" value="${list.no}" /></td>
 								<td>${totalRecordCount -(((nowPage -1)* pageSize) + loop.index)}</td>
 								<td>${list.theater}</td>
-								<td>${list.people}</td>		
+								<td>${list.people}</td>		//
 								<td><a href="<c:url value='/rental.view.cgv?no=${list.no}'/>">${list.content}</a></td>
-								<td>${list.phone}</td>
 								<td>${list.name}</td>
-								<td>${list.writedate}</td>
+								<td>${list.phone}</td>
+								<td>${list.writedate}</td>//
 								
 								<td></td>
 						</c:forEach>

@@ -1,28 +1,31 @@
-<%@page import="model.MovieDto"%>
-<%@page import="java.util.List"%>
-<%@page import="model.BackendDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/loginCheck.jsp" %>
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->  
-    <title>CGV 관리자 페이지</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  	<!-- JQuery -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- JQuery -->
   	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
   	<!-- 달력 UI CSS/CDN -->
   	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
-  	<script>
+
+	<script>
+	
   		$(function(){
   			$("#datepicker").datepicker({
   				dateFormat:"yy-mm-dd"
@@ -41,99 +44,124 @@
 		    });
   		});
   	</script>
-  </head>
-  
-  <body role="document">
 
-    <!-- 고정 네비바 시작 -->
+</head>
+	<div class="container">
+	<div class="row">
+		
+
+<body>
+ <!-- 고정 네비바 시작 -->
     <jsp:include page="/template/TopMenu.jsp"/>
 	<!-- 고정 네비바 끝 -->
-    <div class="container theme-showcase" role="main">
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal name="Write" method="post" action="<c:url value='/lost.Write.cgv'/>">
+                    <h1>&nbsp;&nbsp;</h1>   
+					<legend>
+						<b>분실물 문의</b>
+					</legend>
 
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>분실물 문의 관리</h1>
-        <p></p>
-      </div>
-
-	<!-- 실제 내용의 제목 표시 -->
-      <div class="page-header">
-        <h1>분실물 문의 작성</h1>
-      </div>
-    
-    <div><!-- 실제 내용 작성 -->  
-	<table summary="글쓰기 전체 테이블">
-	<form name="Write" method="post" action="<c:url value='/lost.Write.cgv'/>">
-
-		<colgroup>
-			<col width="20%">
-			<col width="80%">
-		</colgroup>
-
-		<table summary="테이블 구성" align="center">
-			<caption>
-				<b>분실물 문의</b>
-			</caption>
-			<!-- <tr>
-				<td><b>문의번호</b></td>
-				<td><input type="text"  name="no" /></td>
-			</tr> -->
-			<tr>
-				<td><b>회원아이디</b></td>
-				<td><input type="text"  name="id" value="WKDDNRWJD" /></td>
-			</tr>
-			<tr>
-				<td><b>분실 장소</b></td>
-				<td><input type="text"  name="place"/></td>
-			</tr>
-			<tr>
-				<td><b>분실날짜</b></td>
-				<td><input type="text"  name="lostdate" id="datepicker"/></td>
-			</tr>
-			<tr>
-				<td><b>분실 시간(시)</b></td>
-				<td><input type="text"  name="hour" /></td>
-			</tr>
-			<tr>
-				<td><b>분실 시간(분)</b></td>
-				<td><input type="text"  name="minute"/>&nbsp;</td>
-			</tr>
-			
-			<tr>
-				<td><b>분실물 종류</b></td>
-				<td><input type="text"  name="type"/></td>
-			</tr>
-			<tr>
-				<td><b>분실물 색상</b></td>
-				<td><input type="text"  name="color"/></td>
-			</tr>
-			<tr>
-				<td><b>제목</b></td>
-				<td><input type=text name="title"  /></td>
-			</tr>
-			<tr>
-				<td><b>내 용</b></td>
-				<td><textarea name="content" rows="20" cols="100"></textarea></td>
-			</tr>
-			<!-- <tr>
-				<td><b>등록일 </b></td>
-				<td><input type="text" name="wirtedate"/></td>
-			</tr> -->
-			<tr>
-				<td colspan="2">
-					<div align="center">
-						<input class="btn btn-primary" type="submit" value="등록" />&nbsp;&nbsp; <a
-							href="<c:url value='/lost.list.cgv'/>"><input
-							type="button" class="btn btn-danger" value="뒤로"></a>
-						</form>
-						
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">회원아이디</label>
+						<div class="col-md-5">
+							<input id="textinput" name="id" type="text" placeholder="" value="HANSOIN5"
+								class="form-control input-md">
+						</div>
 					</div>
-				</td>
-			</tr>
-		</table>
-</table>
 
-<script type="text/javascript">
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">분실 장소</label>
+						<div class="col-md-2">
+							<input id="textinput" name="place" type="text"
+								placeholder="분실장소를 입력하세요" class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">분실 날짜</label>
+						<div class="col-md-5">
+							<input id="datepicker" name="lostdate" type="text"
+								placeholder="분실 날짜를 선택하세요." class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">분실 시간(시)</label>
+						<div class="col-md-5">
+							<input id="time" name="hour" type="text"
+								placeholder="분실 시간(시)을 선택하세요." class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">분실 시간(분)</label>
+						<div class="col-md-4">
+							<input id="textinput"  name="minute" type="text"
+								placeholder="분실 시간(분)을 입력하세요." class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">분실물 종류</label>
+						<div class="col-md-4">
+							<input id="textinput" name="type" type="text"
+								placeholder="분실물의 종류를 알려주세요." class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">분실물 색상</label>
+						<div class="col-md-5">
+							<input id="textinput" name="color" type="text" placeholder="분실불의 색상을 알려주세요."
+								class="form-control input-md">
+
+						</div>
+					</div>
+					
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">제 목</label>
+						<div class="col-md-4">
+							<input id="textinput" name="title" type="text" rows="10"
+								placeholder="제목을 작성해주세요." class="form-control input-md">
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="textinput">내 용</label>
+						<div class="col-md-4">
+							<textarea id="textinput" name="content" type="text" rows="10"
+								placeholder="내용을 작성해주세요." class="form-control input-md"></textarea>
+						</div>
+					</div>
+
+					
+					<tr>
+						<td colspan="2">
+							<div align="center">
+								<input type="submit" value="등록" />&nbsp;&nbsp;
+								 <a href="<c:url value='/lost/lost.list.cgv'/>"><input type="button" value="뒤로"></a>
+							</form>
+							</div>
+						</td>
+					</tr>
+		</div>
+	</div>
+	<script type="text/javascript">
 
 function send() {
     var emailEx1 = /^([A-Za-z0-9_\-.]{1,15})(@{1})([A-Za-z0-9_]{1,15})(.{1})([A-Za-z0-9_]{2,10})(.{1}[A-Za-z]{2,10})?(.{1}[A-Za-z]{2,10})?$/; 
@@ -185,14 +213,5 @@ function send() {
 }
 
 </script>
-
-    </div> <!-- 내용 끝 -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
-  </body>
+</body>
 </html>
-    

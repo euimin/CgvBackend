@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,15 +18,31 @@ import model.SupportPostDto;
 public class NewsListController extends HttpServlet {
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 한글처리]
+		req.setCharacterEncoding("UTF-8");
+		// 검색과 관련된 파라미터 받기]
+		String searchColumn = req.getParameter("searchColumn");
+		String searchWord = req.getParameter("searchWord");
+		
+		// 검색후 페이징과 관련된 파라미터를 전달할 값을 저장할 변수]
+		String addQuery = "";
 
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		if (searchWord != null) {
+			addQuery += "searchColumn=" + searchColumn + "&searchWord=" + searchWord + "&";
+
+			map.put("searchColumn", searchColumn);
+			map.put("searchWord", searchWord);
+		}
+		
 		BackendDAO dao = new BackendDAO(req.getServletContext());
-
+		
 		// 페이징을 위한 로직 시작]
 		// 전체 레코드 수
-		int totalRecordCount = dao.getTotalNewsRecord();
+		int totalRecordCount = dao.getTotalNewsRecord(map);		
 		
-		/*req.getServletContext().getInitParameter(arg0)*/
 		// 페이지 사이즈
 		int pageSize = Integer.valueOf(this.getInitParameter("PAGE_SIZE"));
 		// 블락페이지
@@ -36,13 +54,15 @@ public class NewsListController extends HttpServlet {
 		// 시작 및 끝 ROWNUM구하기]
 		int start = (nowPage - 1) * pageSize + 1;
 		int end = nowPage * pageSize;
-		                                                // 페이징을 위한 로직 끝]
+		map.put("start", start);
+		map.put("end", end);
+		
+		// 페이징을 위한 로직 끝]
 		// 페이지용 문자열 생성]
-
-		List list = dao.selectNewsList(start, end);
-
+		List<SupportPostDto> list= dao.selectNewsList(map);
+		
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,
-			   req.getServletContext().getContextPath() + "/news/news.list.cgv?");
+			   req.getServletContext().getContextPath() + "/News/newslist.cgv?"+addQuery);
 		dao.close();
 		req.setAttribute("pageSize", pageSize);
 		req.setAttribute("nowPage", nowPage);
@@ -50,13 +70,7 @@ public class NewsListController extends HttpServlet {
 		req.setAttribute("pagingString", pagingString);
 		req.setAttribute("list", list);
 		req.getRequestDispatcher("/news/News.jsp").forward(req, resp);
-
-	}///////////////////////////////////
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 여기서 컨트롤러(서블릿)이 할일을 구현
-		doPost(req, resp);
-	}
+		
+	}/////////service
 
 }//////////////////////////////// NewsController

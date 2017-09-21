@@ -45,7 +45,7 @@ public class EmailListController extends HttpServlet {
 		List list = dao.selectEmailList(start, end);
 
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,
-							  req.getServletContext().getContextPath() + "/email/email.list.cgv?");
+							  req.getServletContext().getContextPath() + "/Email/emaillist.cgv?");
 
 		dao.close();
 		req.setAttribute("totalRecordCount", totalRecordCount);

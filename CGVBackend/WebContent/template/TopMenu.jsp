@@ -23,9 +23,9 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">고객센터<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<c:url value='/faq/Faq.cgv'/>">자주 찾는 질문 관리</a></li>
-                <li><a href="<c:url value='/news/news.list.cgv'/>">뉴스/공지 관리</a></li>              
-                <li><a href="<c:url value='/rental/rental.list.cgv'/>">단체/대관 문의 관리</a></li>
-                <li><a href="<c:url value='/email/email.list.cgv'/>">이메일 문의 관리</a></li>
+                <li><a href="<c:url value='/News/newslist.cgv'/>">뉴스/공지 관리</a></li>              
+                <li><a href="<c:url value='/Rental/rentallist.cgv'/>">단체/대관 문의 관리</a></li>
+                <li><a href="<c:url value='/Email/emaillist.cgv'/>">이메일 문의 관리</a></li>
                 <li><a href="<c:url value='/lost/lost.list.cgv'/>">분실물 문의 관리</a></li>
               </ul>
             </li>
