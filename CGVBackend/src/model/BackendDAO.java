@@ -813,7 +813,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 	public int  insertEmail(EmailDto dto) {//////////Insert
 		
 		int count = 0;
-		String sql ="INSERT INTO QNA(NO,ID,CATEGORY,THEATER,TITLE,CONTENT,WRITEDATE) VALUES(SEQ_EMAIL.nextval,?,?,?,?,?,SYSDATE)";
+		String sql ="INSERT INTO QNA(NO,ID,CATEGORY,THEATER,TITLE,CONTENT,WRITEDATE) VALUES(SEQ_QNANO.nextval,?,?,?,?,?,SYSDATE)";
 		try {
 				
 		psmt = conn.prepareStatement(sql);
@@ -964,7 +964,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 	public int insertLost(LostDto dto) {
 		int index =0;
 		
-		String sql = "INSERT INTO LOST VALUES(SEQ_LOST.NEXTVAL,?,?,?,?,?,?,?,?,?,SYSDATE)";
+		String sql = "INSERT INTO LOST VALUES(SEQ_LOSTNO.NEXTVAL,?,?,?,?,?,?,?,?,?,SYSDATE)";
 		
 		try {
 			

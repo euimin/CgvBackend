@@ -109,7 +109,7 @@
 					<td colspan="2">
 						<div align="center">
 							<input type="submit" value="수정" />&nbsp;&nbsp; 
-							<a href="<c:url value='/email/email.list.cgv'/>"><input type="button" value="뒤로"></a>
+							<a href="<c:url value='/Email/emaillist.cgv'/>"><input type="button" value="뒤로"></a>
 						<c:forEach var="list" items="${list}">
 							<a href="<c:url value='/email.delete.cgv?no=${list.no}'/>">
 							<input type="button" name="Delete" value='삭제' /></a>

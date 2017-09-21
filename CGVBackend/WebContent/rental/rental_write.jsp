@@ -121,8 +121,8 @@
 					<label class="col-md-4 control-label" for="selectbasic">CGV선택</label>
 
 					<div class="col-md-5">
-						<select id="returncgv" name="cgv" class="form-control" >
-						 	<option>지역을선택하세요.</option>
+						<select id="returncgv" name="cgv" class="form-control">
+							<option>지역을선택하세요.</option>
 						</select>
 					</div>
 				</div>
@@ -215,7 +215,7 @@
 					<td colspan="2">
 						<div align="center">
 							<input type="submit" value="등록" onclick="Submit(this.form)" />&nbsp;&nbsp;
-							<a href="<c:url value='/rental.list.cgv'/>"><input
+							<a href="<c:url value='/Rental/rentallist.cgv'/>"><input
 								type="button" value="뒤로"></a>
 		</form>
 

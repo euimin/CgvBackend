@@ -168,7 +168,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RentalListController</servlet-name>
-    <url-pattern>/rental/rental.list.cgv</url-pattern>
+    <url-pattern>/Rental/rentallist.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>RentalViewController</servlet-name>
@@ -208,7 +208,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>EmailListController</servlet-name>
-    <url-pattern>/email/email.list.cgv</url-pattern>
+    <url-pattern>/Email/emaillist.cgv</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>EmailViewController</servlet-name>

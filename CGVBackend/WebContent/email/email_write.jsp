@@ -129,7 +129,7 @@
 					<td colspan="2">
 						<div align="center">
 							<input type="submit" value="등록" />&nbsp;&nbsp; 
-							<a href="<c:url value='/email.list.cgv'/>"><input type="button"
+							<a href="<c:url value='/Email/emaillist.cgv'/>"><input type="button"
 								value="뒤로"></a>
 						</div>
 					</td>

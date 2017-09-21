@@ -145,7 +145,7 @@
 						<td colspan="10">
 							<div align="center">
 							</c:forEach>
-							<a href=" <c:url value='/rental/rental.list.cgv'/>"><input type="button" value="뒤로" /></a> 
+							<a href=" <c:url value='/Rental/rentallist.cgv'/>"><input type="button" value="뒤로" /></a> 
 						    </form>
 								<c:forEach var="list" items="${list}">
 									<a href="<c:url value='/rental.delete.cgv?no=${list.no}'/>"><input type="button" value="삭제" /></a>

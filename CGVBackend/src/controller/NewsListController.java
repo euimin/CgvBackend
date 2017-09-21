@@ -62,7 +62,7 @@ public class NewsListController extends HttpServlet {
 		List<SupportPostDto> list= dao.selectNewsList(map);
 		
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,
-			   req.getServletContext().getContextPath() + "/news/news.list.cgv?"+addQuery);
+			   req.getServletContext().getContextPath() + "/News/newslist.cgv?"+addQuery);
 		dao.close();
 		req.setAttribute("pageSize", pageSize);
 		req.setAttribute("nowPage", nowPage);

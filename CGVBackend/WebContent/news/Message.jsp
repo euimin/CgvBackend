@@ -7,22 +7,22 @@
 	<c:when test="${WHERE eq 'INS' }">
 		<c:set var="SUC_MSG" value="입력 성공"/>
 		<c:set var="FAIL_MSG" value="입력 실패"/>
-		<c:set var="SUC_URL" value="/news/news.list.cgv"/>
+		<c:set var="SUC_URL" value="/News/newslist.cgv"/>
 	</c:when>
 	<c:when test="${WHERE eq 'EDT' }">
 		<c:set var="SUC_MSG" value="수정 성공"/>
 		<c:set var="FAIL_MSG" value="수정 실패"/>
-		<c:set var="SUC_URL" value="/news/news.list.cgv"/>
+		<c:set var="SUC_URL" value="/News/newslist.cgv"/>
 	</c:when>
 	<c:when test="${WHERE eq 'DEL' }">
 		<c:set var="SUC_MSG" value="삭제 성공"/>
 		<c:set var="FAIL_MSG" value="삭제 실패"/>
-		<c:set var="SUC_URL" value="/news/news.list.cgv"/>
+		<c:set var="SUC_URL" value="/News/newslist.cgv"/>
 	</c:when>
 	<c:otherwise>
 		<c:set var="SUC_MSG" value="삭제 성공"/>
 		<c:set var="FAIL_MSG" value="삭제 실패"/>
-		<c:set var="SUC_URL" value="/news/news.list.cgv"/>
+		<c:set var="SUC_URL" value="/News/newslist.cgv"/>
 	</c:otherwise>
 </c:choose>
 
