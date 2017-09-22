@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="model.MovieDto"%>
 <%@page import="java.util.List"%>
 <%@page import="model.BackendDAO"%>
@@ -8,6 +10,15 @@
 <%
 	BackendDAO dao = new BackendDAO(application);
 	List<MovieDto> list = dao.selectMovieList();
+	Map<String, Integer> stillsMap = new HashMap<String, Integer>();
+	Map<String, Integer> trailerMap = new HashMap<String, Integer>();
+	for(MovieDto movie: list){
+		String movie_code = movie.getMovie_code();
+		int stillCount = dao.getStillCount(movie_code);
+		stillsMap.put(movie_code, stillCount);
+		int trailerCount = dao.getTrailerCount(movie_code);
+		trailerMap.put(movie_code, trailerCount);
+	}
 	dao.close();
 %>
 <!DOCTYPE html>
@@ -77,6 +88,9 @@
                 <th>제목</th>
                 <th>관람등급</th>
                 <th>개봉일</th>
+                <th>스틸컷</th>
+                <th>트레일러</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -90,6 +104,8 @@
                 <td><%=dto.getTitle()+"("+dto.getEngtitle()+")"%></td>
                 <td><%=dto.getRating()%></td>
                 <td><%=dto.getReleasedate()%></td>
+                <td><a href="<c:url value='/movies/Still.jsp'/>?movie_code=<%=dto.getMovie_code()%>"><%=stillsMap.get(dto.getMovie_code())%></a></td>
+                <td><a href="#"><%=trailerMap.get(dto.getMovie_code())%></a></td>
                 <td><a href="javascript:isDelete('<%=dto.getTitle()%>', '<%=dto.getMovie_code() %>')"><button class="btn btn-success">삭제</button></a></td>
               </tr>
             <% } %>

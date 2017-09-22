@@ -160,6 +160,72 @@ public class BackendDAO {
 		} catch (SQLException e) {e.printStackTrace();}
 		return affected;
 	}
+	
+	public int getStillCount(String movie_code) {
+		int count = 0;
+		String sql = "select count(*) from still where movie_code=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, movie_code);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {e.printStackTrace();}
+		return count;
+	}
+	/*NO
+MOVIE_CODE
+FILENAME*/
+	public List<StillDto> selectStillList(String movie_code) {
+		List<StillDto> list = new Vector<StillDto>();
+		String sql = "select * from still where movie_code=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, movie_code);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				StillDto dto = new StillDto();
+				dto.setNo(rs.getString(1));
+				dto.setMovie_code(rs.getString(2));
+				dto.setFilename(rs.getString(3));
+				list.add(dto);
+			}
+		} catch (SQLException e) {e.printStackTrace();}
+		return list;
+	}
+	
+	public int getTrailerCount(String movie_code) {
+		int count = 0;
+		String sql = "select count(*) from trailer where movie_code=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, movie_code);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {e.printStackTrace();}
+		return count;
+	}
+	
+	public List<TrailerDto> selectTrailerList(String movie_code) {
+		List<TrailerDto> list = new Vector<TrailerDto>();
+		String sql = "select * from trailer where movie_code=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, movie_code);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				TrailerDto dto = new TrailerDto();
+				dto.setNo(rs.getString(1));
+				dto.setMovie_code(rs.getString(2));
+				dto.setFilename(rs.getString(3));
+				list.add(dto);
+			}
+		} catch (SQLException e) {e.printStackTrace();}
+		return list;
+	}
 
 	public int registerTheater(TheaterDto dto) {
 		int affected = 0;

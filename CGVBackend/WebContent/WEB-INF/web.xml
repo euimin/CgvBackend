@@ -11,7 +11,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>RegisterMovie</servlet-name>
-    <servlet-class>controller.RegisterMovieController</servlet-class>
+    <servlet-class>controller.movies.RegisterMovieController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterMovie</servlet-name>
@@ -19,15 +19,25 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>EditMovie</servlet-name>
-    <servlet-class>controller.EditMovieController</servlet-class>
+    <servlet-class>controller.movies.EditMovieController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EditMovie</servlet-name>
     <url-pattern>/movies/editMovie.cgv</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RegisterStill</servlet-name>
+    <servlet-class>controller.movies.RegisterStillController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterStill</servlet-name>
+    <url-pattern>/movies/registerStill.cgv</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>RegisterTheater</servlet-name>
-    <servlet-class>controller.RegisterTheaterController</servlet-class>
+    <servlet-class>controller.theaters.RegisterTheaterController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterTheater</servlet-name>
@@ -35,7 +45,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>EditTheater</servlet-name>
-    <servlet-class>controller.EditTheaterController</servlet-class>
+    <servlet-class>controller.theaters.EditTheaterController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EditTheater</servlet-name>
@@ -44,7 +54,7 @@
 
   <servlet>
     <servlet-name>FaqList</servlet-name>
-    <servlet-class>controller.FaqController</servlet-class>
+    <servlet-class>controller.faq.FaqController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FaqList</servlet-name>
@@ -52,7 +62,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>FaqView</servlet-name>
-    <servlet-class>controller.FaqViewController</servlet-class>
+    <servlet-class>controller.faq.FaqViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FaqView</servlet-name>
@@ -60,7 +70,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>FaqWrite</servlet-name>
-    <servlet-class>controller.FaqWriteController</servlet-class>
+    <servlet-class>controller.faq.FaqWriteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FaqWrite</servlet-name>
@@ -68,7 +78,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>FaqEdit</servlet-name>
-    <servlet-class>controller.FaqEditController</servlet-class>
+    <servlet-class>controller.faq.FaqEditController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FaqEdit</servlet-name>
@@ -76,7 +86,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>FaqDelete</servlet-name>
-    <servlet-class>controller.FaqDeleteController</servlet-class>
+    <servlet-class>controller.faq.FaqDeleteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FaqDelete</servlet-name>
@@ -84,7 +94,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ReviewList</servlet-name>
-    <servlet-class>controller.ReviewController</servlet-class>
+    <servlet-class>controller.review.ReviewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ReviewList</servlet-name>
@@ -92,7 +102,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ReviewEdit</servlet-name>
-    <servlet-class>controller.ReviewEditController</servlet-class>
+    <servlet-class>controller.review.ReviewEditController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ReviewEdit</servlet-name>
@@ -100,7 +110,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ReviewDelete</servlet-name>
-    <servlet-class>controller.ReviewDeleteController</servlet-class>
+    <servlet-class>controller.review.ReviewDeleteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ReviewDelete</servlet-name>
@@ -108,7 +118,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>NewsListController</servlet-name>
-    <servlet-class>controller.NewsListController</servlet-class>
+    <servlet-class>controller.news.NewsListController</servlet-class>
     <init-param>
       <param-name>PAGE_SIZE</param-name>
       <param-value>5</param-value>
@@ -124,7 +134,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>WriteNewsController</servlet-name>
-    <servlet-class>controller.WriteNewsController</servlet-class>
+    <servlet-class>controller.news.WriteNewsController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WriteNewsController</servlet-name>
@@ -132,7 +142,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>NewsViewController</servlet-name>
-    <servlet-class>controller.NewsViewController</servlet-class>
+    <servlet-class>controller.news.NewsViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>NewsViewController</servlet-name>
@@ -140,7 +150,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>EditNewsController</servlet-name>
-    <servlet-class>controller.EditNewsController</servlet-class>
+    <servlet-class>controller.news.EditNewsController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EditNewsController</servlet-name>
@@ -148,7 +158,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>DeleteNewsController</servlet-name>
-    <servlet-class>controller.DeleteNewsController</servlet-class>
+    <servlet-class>controller.news.DeleteNewsController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteNewsController</servlet-name>
@@ -156,7 +166,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>RentalListController</servlet-name>
-    <servlet-class>controller.RantalListController</servlet-class>
+    <servlet-class>controller.rental.RantalListController</servlet-class>
     <init-param>
       <param-name>PAGE_SIZE</param-name>
       <param-value>5</param-value>
@@ -172,7 +182,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>RentalViewController</servlet-name>
-    <servlet-class>controller.RantalViewController</servlet-class>
+    <servlet-class>controller.rental.RantalViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RentalViewController</servlet-name>
@@ -180,7 +190,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>WriteRantalController</servlet-name>
-    <servlet-class>controller.WriteRantalController</servlet-class>
+    <servlet-class>controller.rental.WriteRantalController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WriteRantalController</servlet-name>
@@ -188,7 +198,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>DeleteRantalController</servlet-name>
-    <servlet-class>controller.DeleteRantalController</servlet-class>
+    <servlet-class>controller.rental.DeleteRantalController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteRantalController</servlet-name>
@@ -196,7 +206,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>EmailListController</servlet-name>
-    <servlet-class>controller.EmailListController</servlet-class>
+    <servlet-class>controller.email.EmailListController</servlet-class>
     <init-param>
       <param-name>PAGE_SIZE</param-name>
       <param-value>5</param-value>
@@ -212,7 +222,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>EmailViewController</servlet-name>
-    <servlet-class>controller.EmailViewController</servlet-class>
+    <servlet-class>controller.email.EmailViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EmailViewController</servlet-name>
@@ -220,7 +230,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>WriteEmailController</servlet-name>
-    <servlet-class>controller.WriteEmailController</servlet-class>
+    <servlet-class>controller.email.WriteEmailController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WriteEmailController</servlet-name>
@@ -228,7 +238,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>DeleteEmailController</servlet-name>
-    <servlet-class>controller.DeleteEmailController</servlet-class>
+    <servlet-class>controller.email.DeleteEmailController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteEmailController</servlet-name>
@@ -236,7 +246,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>LostListController</servlet-name>
-    <servlet-class>controller.LostListController</servlet-class>
+    <servlet-class>controller.lost.LostListController</servlet-class>
     <init-param>
       <param-name>PAGE_SIZE</param-name>
       <param-value>5</param-value>
@@ -252,7 +262,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>LostViewController</servlet-name>
-    <servlet-class>controller.LostViewController</servlet-class>
+    <servlet-class>controller.lost.LostViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LostViewController</servlet-name>
@@ -260,7 +270,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>WriteLostController</servlet-name>
-    <servlet-class>controller.WriteLostController</servlet-class>
+    <servlet-class>controller.lost.WriteLostController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WriteLostController</servlet-name>
@@ -268,7 +278,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>DeleteLostController</servlet-name>
-    <servlet-class>controller.DeleteLostController</servlet-class>
+    <servlet-class>controller.lost.DeleteLostController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteLostController</servlet-name>
@@ -276,7 +286,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ReserveList</servlet-name>
-    <servlet-class>controller.ReserveController</servlet-class>
+    <servlet-class>controller.reserve.ReserveController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ReserveList</servlet-name>
@@ -284,7 +294,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ReserveDelete</servlet-name>
-    <servlet-class>controller.ReserveDeleteController</servlet-class>
+    <servlet-class>controller.reserve.ReserveDeleteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ReserveDelete</servlet-name>
@@ -295,7 +305,7 @@
   <!-- 회원관리 -->
   <servlet>
     <servlet-name>MembersList</servlet-name>
-    <servlet-class>controller.MembersListController</servlet-class>
+    <servlet-class>controller.user.MembersListController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MembersList</servlet-name>
@@ -303,7 +313,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>MembersView</servlet-name>
-    <servlet-class>controller.MembersViewController</servlet-class>
+    <servlet-class>controller.user.MembersViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MembersView</servlet-name>
@@ -311,7 +321,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>MembersEdit</servlet-name>
-    <servlet-class>controller.MembersEditController</servlet-class>
+    <servlet-class>controller.user.MembersEditController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MembersEdit</servlet-name>
@@ -319,7 +329,7 @@
   </servlet-mapping>
     <servlet>
     <servlet-name>MembersDelete</servlet-name>
-    <servlet-class>controller.MembersDeleteController</servlet-class>
+    <servlet-class>controller.user.MembersDeleteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MembersDelete</servlet-name>
@@ -339,7 +349,7 @@
   
   <servlet>
     <servlet-name>ShowTimesList</servlet-name>
-    <servlet-class>controller.ShowtimeController</servlet-class>
+    <servlet-class>controller.show_times.ShowtimeController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowTimesList</servlet-name>
@@ -347,7 +357,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ShowTimesView</servlet-name>
-    <servlet-class>controller.ShowtimeViewController</servlet-class>
+    <servlet-class>controller.show_times.ShowtimeViewController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowTimesView</servlet-name>
@@ -355,7 +365,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ShowTimesEdit</servlet-name>
-    <servlet-class>controller.ShowtimeEditController</servlet-class>
+    <servlet-class>controller.show_times.ShowtimeEditController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowTimesEdit</servlet-name>
@@ -363,7 +373,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ShowTimesWrite</servlet-name>
-    <servlet-class>controller.ShowtimeWriteController</servlet-class>
+    <servlet-class>controller.show_times.ShowtimeWriteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowTimesWrite</servlet-name>
@@ -371,7 +381,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ShowTimesDelete</servlet-name>
-    <servlet-class>controller.ShowtimeDeleteController</servlet-class>
+    <servlet-class>controller.show_times.ShowtimeDeleteController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowTimesDelete</servlet-name>
