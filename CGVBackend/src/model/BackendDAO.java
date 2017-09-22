@@ -1337,6 +1337,186 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////
+	public List<ShowTimeDTO> selectTitles() {
+		List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();
+		String sql = "select title from movie";
+		
+		try {
+			psmt=conn.prepareStatement(sql);
+			rs=psmt.executeQuery();
+			
+			while(rs.next()){
+				ShowTimeDTO dto = new ShowTimeDTO(
+						null,
+						null,
+						null,
+						null,
+						null,
+						rs.getString(1),
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null			
+						); 
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<ShowTimeDTO> selectRegions() {
+		List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();
+		String sql = "select distinct region from theater";
+		
+		try {
+			psmt=conn.prepareStatement(sql);
+			rs=psmt.executeQuery();
+			
+			while(rs.next()){
+				ShowTimeDTO dto = new ShowTimeDTO(
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						rs.getString(1),
+						null			
+						); 
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+	public List<ShowTimeDTO> selectTheaterList(String region){
+			List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();		
+			String sql = "select name from theater where region = ?";
+			System.out.println("sql에 세팅할 region값 : " + region);	
+		try {			
+			psmt=conn.prepareStatement(sql);
+			
+			psmt.setString(1, region);
+			rs=psmt.executeQuery();
+			
+			while(rs.next()){
+				ShowTimeDTO dto = new ShowTimeDTO(
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						rs.getString("name")		
+						); 
+				System.out.println(dto.getName());
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<ShowTimeDTO> selectNumberList(String theatername){
+		List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();		
+		String sql = "select distinct s.no from screen s join theater t on s.theater_code = t.theater_code where t.name = ? order by s.no asc";
+	try {			
+		psmt=conn.prepareStatement(sql);
+		psmt.setString(1, theatername);
+		rs=psmt.executeQuery();
+		
+		while(rs.next()){
+			ShowTimeDTO dto = new ShowTimeDTO(
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					rs.getString(1),
+					null,
+					null,
+					null		
+					); 
+			System.out.println("극장 번호:" + dto.getNo());
+			list.add(dto);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return list;
+	
+}
+	
+	public List<ShowTimeDTO> selectTimeList(String no,String theatername) {
+		List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();		
+		String sql = "select sc.time from screening sc join screen s on sc.screen_code = s.screen_code inner join theater t on s.theater_code = t.theater_code where t.name= ? and s.no = ? order by sc.time asc";
+	try {			
+		
+		//
+		System.out.println("DAO에 들어온 no: "+no);
+		System.out.println("DAO에 들어온 theatername: "+theatername);
+		//
+		psmt=conn.prepareStatement(sql);
+		psmt.setString(1, theatername);
+		psmt.setString(2, no);
+		rs=psmt.executeQuery();
+		
+		while(rs.next()){
+			ShowTimeDTO dto = new ShowTimeDTO(
+					null,
+					null,
+					null,
+					null,
+					rs.getString(1),
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					null		
+					); 
+			System.out.println("상영 시간:" + dto.getTime());
+			list.add(dto);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return list;
+	}
+	
 	
 	public List<ShowTimeDTO> selectScreeningList() {
 		List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();
@@ -1350,7 +1530,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 						rs.getString(1),
 						rs.getString(2),
 						rs.getString(3),
-						rs.getDate(4),
+						rs.getString(4).substring(0, 10),
 						rs.getString(5),
 						rs.getString(6),
 						null,
@@ -1362,6 +1542,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 						null,
 						rs.getString("name")				
 						);
+				
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -1382,7 +1563,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 					rs.getString(1),
 					rs.getString(2),
 					rs.getString(3),
-					rs.getDate(4),
+					rs.getString(4).substring(0, 10),
 					rs.getString(5),
 					rs.getString(6),
 					rs.getString(7),
@@ -1403,17 +1584,19 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 	
 	public int insertShowTime(ShowTimeDTO dto) {
 		int affected=0;
-		String sql="insert into screening values(SEQ_SCREENINGCODE.nextval,(select theater_code from theater where name = ? and region = ?),(select screen_code from screen where no = ?),?,?)";
+		String sql="insert into screening values (SEQ_SCREENINGCODE.nextval, (select screen_code from screen where no= ? and theater_code = (select theater_code from theater where region=? and name=?)),(select movie_code from movie where title=?),?,?)";
 		try {
+			
 			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, dto.getName());
+			psmt.setString(1, dto.getNo());
 			psmt.setString(2, dto.getRegion());
-			psmt.setString(3, dto.getNo());
-			psmt.setDate(4, dto.getScreeningdate());
-			psmt.setString(5, dto.getTime());
+			psmt.setString(3, dto.getName());
+			psmt.setString(4, dto.getTitle());
+			psmt.setString(5, dto.getScreeningdate());
+			psmt.setString(6, dto.getTime());
 			affected=psmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		return affected;
 	}
@@ -1429,7 +1612,37 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 			e.printStackTrace();
 		}
 		return affected;
-	}/////////////////////
+	}/////////////////////////delete
+
+	public int update(ShowTimeDTO dto) {
+		int affected=0;
+		//
+		System.out.println("DAO의 update로 들어왔다.......");	
+		System.out.println();
+		//
+		String sql="update screening set screen_code = (select screen_code from screen where no= ? and theater_code = (select theater_code from theater where region=? and name=?)), movie_code = (select movie_code from movie where title=?), screeningdate = ?, time = ? where screening_code = ?";
+		// (select screen_code from screen where no= ? and theater_code = (select theater_code from theater where region=? and name=?)),(select movie_code from movie where title=?),?,?)
+		try {
+			psmt=conn.prepareStatement(sql);
+			System.out.println(psmt);
+			psmt.setString(1, dto.getNo());
+			psmt.setString(2, dto.getRegion());
+			psmt.setString(3, dto.getName());
+			psmt.setString(4, dto.getTitle());
+			psmt.setString(5, dto.getScreeningdate());
+			psmt.setString(6, dto.getTime());
+			psmt.setString(7, dto.getScreening_code());
+			
+			affected=psmt.executeUpdate();
+			System.out.println("affected :"+affected);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return affected;
+	}
+/////////////////////
+////////////////////////////////////////////////////////////////////////////////////////	
 	
 	public List<RentalDto> returncgv(RentalDto dto1) {
 		List<RentalDto> list = new Vector<RentalDto>();

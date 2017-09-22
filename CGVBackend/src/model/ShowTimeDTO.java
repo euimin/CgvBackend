@@ -1,5 +1,4 @@
 package model;
-
 import java.sql.Date;
 
 public class ShowTimeDTO {
@@ -7,7 +6,7 @@ public class ShowTimeDTO {
 	private String screening_code;
 	private String screen_code;
 	private String movie_code;	
-	private java.sql.Date screeningdate;
+	private String screeningdate;
 	private String time;
 	//MOVIE 테이블
 	private String title;
@@ -25,7 +24,8 @@ public class ShowTimeDTO {
 	
 	public ShowTimeDTO() {}
 
-	public ShowTimeDTO(String screening_code, String screen_code, String movie_code, Date screeningdate, String time,
+
+	public ShowTimeDTO(String screening_code, String screen_code, String movie_code, String screeningdate, String time,
 			String title, String genre, String rating, String runningtime, Date releasedate, String no, String seats,
 			String region, String name) {
 		super();
@@ -44,6 +44,10 @@ public class ShowTimeDTO {
 		this.region = region;
 		this.name = name;
 	}
+
+
+
+
 
 	public String getScreening_code() {
 		return screening_code;
@@ -68,14 +72,17 @@ public class ShowTimeDTO {
 	public void setMovie_code(String movie_code) {
 		this.movie_code = movie_code;
 	}
+	
 
-	public java.sql.Date getScreeningdate() {
+	public String getScreeningdate() {
 		return screeningdate;
 	}
 
-	public void setScreeningdate(java.sql.Date screeningdate) {
+
+	public void setScreeningdate(String screeningdate) {
 		this.screeningdate = screeningdate;
 	}
+
 
 	public String getTime() {
 		return time;

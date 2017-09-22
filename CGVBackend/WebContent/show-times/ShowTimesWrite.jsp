@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/loginCheck.jsp" %>
 <%
 	
 %>
@@ -16,6 +17,95 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet"
+   href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <link rel="stylesheet"
+   href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script
+   src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
+  	<script>
+  		$(function(){
+  			//메뉴 표시를 위한 코드
+			var page = location.href;
+		    $('#menubar li a').each(function(){
+		    	var href = $(this).attr('href').split("/");
+		    	var menu = href[2];	     
+		        if (page.indexOf(menu) != -1) {
+		            $(this).parent().addClass('active');
+		        } else {
+		            $(this).parent().removeClass('active');
+		        }
+		    });
+  		});
+  		
+  		$( function() {
+  		    $( "#datepicker" ).datepicker({       
+  		      dateFormat: "yy-mm-dd",    
+  		     });
+  		  } );
+  		
+  		
+  		function sub() {
+  			var regionData= f.region.value;
+  			$.ajax({
+  				type : "post",
+  				url : "<c:url value='/CGV/ShowTimesWrite.cgv'/>",
+  				data : "region="+regionData,
+  				success : result,
+  				error:function(){
+  					alert("AJAX에러 발생");
+  				}
+  			});
+  		}
+  		function result(msg) {
+  			console.log(msg)
+  			$("#theatername").html(msg);
+  		}	
+  		
+  		 function mul() {
+  			var theatername= f.theatername.value;
+  			console.log("theatername타입 =" + typeof(theatername));
+  			$.ajax({
+  				type : "post",
+  				url : "<c:url value='/CGV/ShowTimesWrite.cgv'/>",
+  				data : "name="+theatername,
+  				success : resultNo,
+  				error:function(){
+  					alert("AJAX에러 발생");
+  				}
+  			});
+  		} 
+  		 function resultNo(msg) {
+  				console.log(msg)
+  				$("#no").html(msg);
+  			}	
+  		
+  		 
+  		 function div() {
+  				var theatername= f.theatername.value;
+  				var no = f.no.value;
+  				console.log("theatername타입 =" + typeof(theatername));
+  				console.log("theatername =" + theatername);
+  				console.log("no타입 =" + typeof(no));
+  				console.log("no =" + no);
+  				$.ajax({
+  					type : "post",
+  					url : "<c:url value='/CGV/ShowTimesWrite.cgv'/>",
+  					data : "no="+no+"&name="+theatername,
+  					success : resultTime,
+  					error:function(){
+  						alert("AJAX에러 발생");
+  					}
+  				});
+  			} 
+  		 function resultTime(msg) {
+  				console.log(msg)
+  				$("#time").html(msg);
+  			}	
+  		
+	</script>
   </head>
 
 <body role="document">
@@ -38,65 +128,65 @@
 
 		<!-- 실제 내용 작성 -->
 		<div align="center">
-			<form method="post" action="<c:url value='/CGV/ShowTimesWrite.cgv'/>">
+			<form method="post" name="f" action="<c:url value='/CGV/ShowTimesWrite.cgv'/>">
+			<input type="hidden" name="submit"/>
 			<table class="table" style="width: 80%">
 				<tbody>
-			<!-- 	<input type="hidden" id="screening_code" /> -->
-					
 					<tr >
 						<td>영화 제목</td>
+						
 						<td>
-							<input type="text" name="title"/>
-						</td>
-						<td>상영일</td>
-						<td>
-							<input type="text" name="screeningdate"/>
-						</td>
-						<td>상영 시간</td>
-						<td >
-							<select style="width: 90%" name="time">
-								<option>10:30</option>
-								<option>12:30</option>
-								<option>16:30</option>
-								<option>17:00</option>
-								<option>18:30</option>
-								<option>20:00</option>
-								<option>21:30</option>			
+							<select  name="title">
+								<option>영화제목</option>
+							<c:forEach items="${list}" var = "list">
+								<option>${list.title}</option>
+							</c:forEach>	
 							</select>
 						</td>
+						
+						<td>상영일</td>
+						<td>
+							<input style="width: 60%" type="text" name="screeningdate" id="datepicker"/>
+						</td>
+						
 					</tr>
 					<tr >
-						<td>상영관 번호</td>
-						<td>
-							<input type="text" name="no"/>
-						</td>	
-						
+					
 						<td style="width: 10%">지역</td>
 						<td style="width: 12%">
-							<select name="region">
-								<option>서울</option>
-								<option>대구</option>
-								<option>부산</option>
-								<option>경기도</option>				
+							<select name="region" id="region" onchange="sub();">
+								<option>지역</option>
+							<c:forEach items="${regionList}" var = "regionList">
+								<option>${regionList.region }</option>
+							</c:forEach>		
 							</select>
 						</td>	
 						
 						<td style="width: 10%">극장 이름</td>
 						<td style="width: 12%">
-							<select name="name ">
-								<option>CGV강남</option>
-								<option>CGV강변</option>
-								<option>CGV강동</option>
-								<option>CGV신도림</option>
-								<option>CGV대학로</option>
-								<option>CGV군자</option>
-								<option>CGV명동</option>				
+							
+							<select name="theatername" id="theatername" onchange="mul();">
+								<option>극장이름</option>							
+							</select>
+							
+						</td>	
+						
+					</tr>
+					<td>상영관 번호</td>
+						<td>
+							<select style="width: 30%" name="no" id = "no" onchange="div();">
+							<option>번호</option>	
 							</select>
 						</td>	
-					</tr>
+					<td>상영 시간</td>
+						<td >
+							<select name="time" id="time">
+								<option>상영 시간</option>
+							</select>
+						</td>
 					<tr align="center">
 						<td colspan="6">
-							<input class="btn btn-primary" type="submit" value="등록"/>
+							<input type="submit" value="등록"/>
 						</td>
 					</tr>
 				</tbody>
@@ -111,7 +201,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	
 	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
 </body>
 </html>
