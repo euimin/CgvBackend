@@ -18,11 +18,11 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>  	
   	<script>
   		$(function(){
-  		//메뉴 표시를 위한 코드
-			var page = location.href;
+  			//메뉴 표시를 위한 코드
+			var page = location.href;			
 		    $('#menubar li a').each(function(){
 		    	var href = $(this).attr('href').split("/");
-		    	var menu = href[2];	     
+		    	var menu = href[2];			    	
 		        if (page.indexOf(menu) != -1) {
 		            $(this).parent().addClass('active');		            
 		        } else {

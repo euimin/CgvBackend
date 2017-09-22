@@ -30,7 +30,7 @@
               </ul>
             </li>
             <li><a href="<c:url value='/user/members.List.cgv'/>">회원 관리</a></li>
-            <li><a href="<c:url value='/login/Logout.jsp'/>"><u>로그아웃</u></a></li>
+            <li><a href="<c:url value='/logout/Logout.jsp'/>"><u>로그아웃</u></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
