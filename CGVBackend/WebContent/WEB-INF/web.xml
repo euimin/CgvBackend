@@ -401,7 +401,11 @@
   </context-param>
   <context-param>
     <param-name>POSTER_DIRECTORY</param-name>
-    <param-value>E:\BEM\JAVA\Workspace\CGVBackend_all(09080800)\WebContent\images\poster</param-value>
+    <param-value>E:\BEM\JAVA\Workspace\CGVBackend_git\CGVBackend\WebContent\images\posters</param-value>
+  </context-param>
+  <context-param>
+    <param-name>STILLS_DIRECTORY</param-name>
+    <param-value>E:\BEM\JAVA\Workspace\CGVBackend_git\CGVBackend\WebContent\images\stills</param-value>
   </context-param>
   <welcome-file-list>
     <welcome-file>Index.jsp</welcome-file>

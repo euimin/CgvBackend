@@ -104,7 +104,11 @@
                 <td><%=dto.getTitle()+"("+dto.getEngtitle()+")"%></td>
                 <td><%=dto.getRating()%></td>
                 <td><%=dto.getReleasedate()%></td>
-                <td><a href="<c:url value='/movies/Still.jsp'/>?movie_code=<%=dto.getMovie_code()%>"><%=stillsMap.get(dto.getMovie_code())%></a></td>
+                <td>
+                	<a href="<c:url value='/movies/Still.jsp'/>?movie_code=<%=dto.getMovie_code()%>&movie_title=<%=dto.getTitle()%>">
+                		<%=stillsMap.get(dto.getMovie_code())%>
+                	</a>
+                </td>
                 <td><a href="#"><%=trailerMap.get(dto.getMovie_code())%></a></td>
                 <td><a href="javascript:isDelete('<%=dto.getTitle()%>', '<%=dto.getMovie_code() %>')"><button class="btn btn-success">삭제</button></a></td>
               </tr>

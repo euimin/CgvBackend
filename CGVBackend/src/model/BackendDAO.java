@@ -195,6 +195,18 @@ FILENAME*/
 		return list;
 	}
 	
+	public int registerStill(StillDto dto) {
+		int affected = 0;
+		String sql = "insert into still values(seq_still.nextval, ?, ?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getMovie_code());
+			psmt.setString(2, dto.getFilename());
+			affected = psmt.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace();}
+		return affected;
+	}
+	
 	public int getTrailerCount(String movie_code) {
 		int count = 0;
 		String sql = "select count(*) from trailer where movie_code=?";
