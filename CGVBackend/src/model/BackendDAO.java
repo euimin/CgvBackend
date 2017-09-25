@@ -179,7 +179,7 @@ MOVIE_CODE
 FILENAME*/
 	public List<StillDto> selectStillList(String movie_code) {
 		List<StillDto> list = new Vector<StillDto>();
-		String sql = "select * from still where movie_code=?";
+		String sql = "select * from still where movie_code=? order by no asc";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, movie_code);
@@ -207,6 +207,17 @@ FILENAME*/
 		return affected;
 	}
 	
+	public int deleteStill(String no) {
+		int affected = 0;
+		String sql = "delete from still where no=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);
+			affected = psmt.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace();}
+		return affected;
+	}
+	
 	public int getTrailerCount(String movie_code) {
 		int count = 0;
 		String sql = "select count(*) from trailer where movie_code=?";
@@ -220,10 +231,10 @@ FILENAME*/
 		} catch (SQLException e) {e.printStackTrace();}
 		return count;
 	}
-	
+
 	public List<TrailerDto> selectTrailerList(String movie_code) {
 		List<TrailerDto> list = new Vector<TrailerDto>();
-		String sql = "select * from trailer where movie_code=?";
+		String sql = "select * from trailer where movie_code=? order by no asc";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, movie_code);
@@ -232,11 +243,41 @@ FILENAME*/
 				TrailerDto dto = new TrailerDto();
 				dto.setNo(rs.getString(1));
 				dto.setMovie_code(rs.getString(2));
-				dto.setFilename(rs.getString(3));
+				dto.setTitle(rs.getString(3));
+				dto.setUrl(rs.getString(4));
+				dto.setRegidate(rs.getDate(5));
 				list.add(dto);
 			}
 		} catch (SQLException e) {e.printStackTrace();}
 		return list;
+	}
+	/*NO
+MOVIE_CODE
+TITLE
+URL
+REGIDATE*/
+	public int registerTrailer(TrailerDto dto) {
+		int affected = 0;
+		String sql = "insert into trailer values(seq_trailer.nextval, ?, ?, ?, default)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getMovie_code());
+			psmt.setString(2, dto.getTitle());
+			psmt.setString(3, dto.getUrl());
+			affected = psmt.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace();}
+		return affected;
+	}
+	
+	public int deleteTrailer(String no) {
+		int affected = 0;
+		String sql = "delete from trailer where no=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);
+			affected = psmt.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace();}
+		return affected;
 	}
 
 	public int registerTheater(TheaterDto dto) {

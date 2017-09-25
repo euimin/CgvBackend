@@ -1,12 +1,16 @@
 package model;
 
 public class TrailerDto {
-	/*NO
+/*NO
 MOVIE_CODE
-FILENAME*/
+TITLE
+URL
+REGIDATE*/
 	private String no;
 	private String movie_code;
-	private String filename;
+	private String title;
+	private String url;
+	private java.sql.Date regidate;
 	
 	public String getNo() {
 		return no;
@@ -20,10 +24,22 @@ FILENAME*/
 	public void setMovie_code(String movie_code) {
 		this.movie_code = movie_code;
 	}
-	public String getFilename() {
-		return filename;
+	public String getTitle() {
+		return title;
 	}
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public java.sql.Date getRegidate() {
+		return regidate;
+	}
+	public void setRegidate(java.sql.Date regidate) {
+		this.regidate = regidate;
 	}
 }

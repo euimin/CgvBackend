@@ -1,12 +1,36 @@
+<%@page import="model.TrailerDto"%>
+<%@page import="model.BackendDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/loginCheck.jsp" %>
 <%
+	request.setCharacterEncoding("utf-8");
 	String movie_code = request.getParameter("movie_code");
 	String movie_title = request.getParameter("movie_title");
 	request.setAttribute("movie_code", movie_code);
 	request.setAttribute("movie_title", movie_title);
+	String title = request.getParameter("title");
+	String url = request.getParameter("url");
+	if(title!=null){
+		TrailerDto dto = new TrailerDto();
+		dto.setMovie_code(movie_code);
+		dto.setTitle(title);
+		dto.setUrl(url);
+		BackendDAO dao = new BackendDAO(application);
+		int affected = dao.registerTrailer(dto);
+		dao.close();
+		if(affected==1){
+			movie_title = new String(movie_title.getBytes("utf-8"), "8859_1");
+			response.sendRedirect(request.getContextPath()+"/movies/Trailer.jsp"
+					+"?movie_code="+movie_code
+					+"&movie_title="+movie_title);
+		}
+		else{
+			request.setAttribute("dto", dto);
+			request.setAttribute("registerError", "등록 실패:다시 확인하세요");
+		}
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -43,10 +67,11 @@
 		    });
 		    
 		    $("#back").click(function(){
-				location.href="<c:url value='/movies/Still.jsp'/>?movie_code=${movie_code}&movie_title=${movie_title}";	
+				location.href="<c:url value='/movies/Trailer.jsp'/>?movie_code=${movie_code}&movie_title=${movie_title}";	
 			});	
 		    		
 		    $("tr>td:first").css("width", "150px");
+		    $(":text").css("width", "350px");
 		});
   	</script>
   </head>
@@ -65,39 +90,22 @@
 
 	<!-- 실제 내용의 제목 표시 -->
       <div class="page-header">
-        <h1>스틸컷 등록</h1>
+        <h1>트레일러 등록</h1>
       </div>
     
     <!-- 실제 내용 작성 -->  
     <div>
-     <form action="<c:url value='/movies/registerStill.cgv'/>" method="post" enctype="multipart/form-data">
-     	<input type="hidden" name="movie_code" value="<%=request.getParameter("movie_code")%>"/>
-     	<input type="hidden" name="movie_title" value="<%=request.getParameter("movie_title")%>"/>
+     <form method="post">
      	<table class="table" style="width: 70%">
             <tbody>
               <tr>
-                <td>등록할 사진</td>
-                <td><input type="file" id="still" name="still"/></td>
+                <td>제목</td>
+                <td><input type="text" name="title" value="${dto.title}"/></td>
               </tr>
               <tr>
-                <td>이미지 미리보기</td>
-                <td><div id="holder"></div></td>
+                <td>동영상 URL</td>
+                <td><input type="text" name="url" value="${dto.url}"/></td>
               </tr>
-              <script>
-              	var upload = document.getElementById('still');
-	      	    var holder = document.getElementById('holder');	
-	      		upload.onchange = function (e) {
-	      		  var file = upload.files[0];
-	      		  var reader = new FileReader();
-	      		  reader.onload = function (event) {
-	      		    var img = new Image();
-	      		    img.src = event.target.result;
-	      		    holder.innerHTML = '';
-	      		    holder.appendChild(img);
-	      		  };
-	      		  reader.readAsDataURL(file);
-	      		};
-              </script>
               <tr>
               	<td colspan="2">
               		<input class="btn btn-success" type="button" id="back" value="취소"/> 

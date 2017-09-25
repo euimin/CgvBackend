@@ -404,9 +404,11 @@
     <param-value>E:\BEM\JAVA\Workspace\CGVBackend_git\CGVBackend\WebContent\images\posters</param-value>
   </context-param>
   <context-param>
-    <param-name>STILLS_DIRECTORY</param-name>
+    <param-name>STILL_DIRECTORY</param-name>
     <param-value>E:\BEM\JAVA\Workspace\CGVBackend_git\CGVBackend\WebContent\images\stills</param-value>
   </context-param>
+
+  
   <welcome-file-list>
     <welcome-file>Index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>

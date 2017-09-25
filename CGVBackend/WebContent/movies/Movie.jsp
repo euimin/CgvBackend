@@ -11,13 +11,13 @@
 	BackendDAO dao = new BackendDAO(application);
 	List<MovieDto> list = dao.selectMovieList();
 	Map<String, Integer> stillsMap = new HashMap<String, Integer>();
-	Map<String, Integer> trailerMap = new HashMap<String, Integer>();
+	Map<String, Integer> trailersMap = new HashMap<String, Integer>();
 	for(MovieDto movie: list){
 		String movie_code = movie.getMovie_code();
 		int stillCount = dao.getStillCount(movie_code);
 		stillsMap.put(movie_code, stillCount);
 		int trailerCount = dao.getTrailerCount(movie_code);
-		trailerMap.put(movie_code, trailerCount);
+		trailersMap.put(movie_code, trailerCount);
 	}
 	dao.close();
 %>
@@ -109,7 +109,11 @@
                 		<%=stillsMap.get(dto.getMovie_code())%>
                 	</a>
                 </td>
-                <td><a href="#"><%=trailerMap.get(dto.getMovie_code())%></a></td>
+                <td>
+                	<a href="<c:url value='/movies/Trailer.jsp'/>?movie_code=<%=dto.getMovie_code()%>&movie_title=<%=dto.getTitle()%>">
+                		<%=trailersMap.get(dto.getMovie_code())%>
+                	</a>
+                </td>
                 <td><a href="javascript:isDelete('<%=dto.getTitle()%>', '<%=dto.getMovie_code() %>')"><button class="btn btn-success">삭제</button></a></td>
               </tr>
             <% } %>
