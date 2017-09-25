@@ -97,11 +97,14 @@
             <% }
                else {
         	   		for(TrailerDto dto: list){
-        	   			request.setAttribute("url", dto.getUrl());%>
+        	   			String url = dto.getUrl();        	   			
+        	   			String playId = url.substring(url.lastIndexOf("=")+1);
+        	   			request.setAttribute("playId", playId);%>
 		              <tr>
 		                <td><%=dto.getNo()%></td>
 		                <td>
-		                	<iframe style="height: 200px; border: 0px" src="${url}"></iframe>
+		                	<iframe style="height: 200px; border: 0px" 
+		                		src="https://www.youtube.com/embed/${playId}"></iframe>
 		                </td>
 		                <td><%=dto.getTitle()%></td>
 		                <td><%=dto.getRegidate()%></td>		               
