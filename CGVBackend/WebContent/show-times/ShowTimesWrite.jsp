@@ -178,11 +178,13 @@
 							<option>번호</option>	
 							</select>
 						</td>	
-					<td>상영 시간</td>
+					<td>상영 시간<div style="color: gray; font-weight: bold">※기존 상영시간와 겹치지 않게 주의!!</div></td>
 						<td >
-							<select name="time" id="time">
-								<option>상영 시간</option>
+							<select id="time">
+								<option>이미 등록된 상영 시간</option>
+								
 							</select>
+							<input type="text" name="time"/>
 						</td>
 					<tr align="center">
 						<td colspan="6">

@@ -29,7 +29,7 @@ public class RegisterMovieController extends HttpServlet{
 			countryStr = countryStr.substring(0, countryStr.length()-2);
 			
 			MovieDto dto = new MovieDto(
-					null, mr.getParameter("title"), mr.getParameter("engtitle"), mr.getFilesystemName("poster"),
+					null, mr.getParameter("title").trim(), mr.getParameter("engtitle"), mr.getFilesystemName("poster"),
 					mr.getParameter("director"), mr.getParameter("actor"), genreStr, 
 					mr.getParameter("rating"), mr.getParameter("runningtime"),
 					countryStr, mr.getParameter("releasedate"), mr.getParameter("website"),

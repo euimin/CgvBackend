@@ -1492,7 +1492,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 	
 	public List<ShowTimeDTO> selectRegions() {
 		List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();
-		String sql = "select distinct region from theater";
+		String sql = "select region from (select distinct region, regionid from theater order by regionid)";
 		
 		try {
 			psmt=conn.prepareStatement(sql);
@@ -1527,7 +1527,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 	
 	public List<ShowTimeDTO> selectTheaterList(String region){
 			List<ShowTimeDTO> list = new Vector<ShowTimeDTO>();		
-			String sql = "select name from theater where region = ?";
+			String sql = "select name from theater where region = ? order by name";
 			System.out.println("sql에 세팅할 region값 : " + region);	
 		try {			
 			psmt=conn.prepareStatement(sql);
@@ -1703,7 +1703,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 	
 	public int insertShowTime(ShowTimeDTO dto) {
 		int affected=0;
-		String sql="insert into screening values (SEQ_SCREENINGCODE.nextval, (select screen_code from screen where no= ? and theater_code = (select theater_code from theater where region=? and name=?)),(select movie_code from movie where title=?),?,?)";
+		String sql="insert into screening values ('STC'||seq_screening.nextval, (select screen_code from screen where no= ? and theater_code = (select theater_code from theater where region=? and name=?)),(select movie_code from movie where title=?),?,?)";
 		try {
 			
 			psmt=conn.prepareStatement(sql);

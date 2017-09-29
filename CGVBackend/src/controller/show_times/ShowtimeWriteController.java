@@ -74,6 +74,7 @@ public class ShowtimeWriteController extends HttpServlet{
 			System.out.println("극장 이름: "+dto.getName());
 			BackendDAO dao=new BackendDAO(req.getServletContext());
 			sucOrfail=dao.insertShowTime(dto);
+			dao.close();
 			
 			req.setAttribute("suc_fail", sucOrfail);
 			req.setAttribute("where", "INS");
@@ -129,7 +130,7 @@ public class ShowtimeWriteController extends HttpServlet{
 				
 				PrintWriter out=resp.getWriter();
 				out.println("<select name='time' id='time'>");
-				out.println("<option>상영시간</option>");
+				out.println("<option>이미 등록된 상영시간</option>");
 				for(ShowTimeDTO dto: list) {
 					System.out.println(dto.getTime());
 						out.println("<option>"+dto.getTime()+"</option>");
