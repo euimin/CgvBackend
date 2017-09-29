@@ -80,9 +80,9 @@ $(function() {
 							<td style="width: 10%; font-weight: bold">아이디(닉네임)</td>
 							<td><%=dto.getId()%>(<%=dto.getNickname() %>)</td>
 							<td style="width: 10%; font-weight: bold">피드백</td>
-							<td><input type="radio" id="feedbackChoice1" name="feedback" value="u" <%if(dto.getFeedback().equals("u")){%>checked="checked"<%} %>>
+							<td><input type="radio" id="feedbackChoice1" name="feedback" value="U" <%if(dto.getFeedback().equalsIgnoreCase("u")){%>checked="checked"<%} %>>
 							    <label for="feedbackChoice1">Up</label><br/>
-							    <input type="radio" id="feedbackChoice2" name="feedback" value="d" <%if(dto.getFeedback().equals("d")){%>checked="checked"<%} %>>
+							    <input type="radio" id="feedbackChoice2" name="feedback" value="D" <%if(dto.getFeedback().equalsIgnoreCase("d")){%>checked="checked"<%} %>>
 							    <label for="feedbackChoice2">Down</label></td>
 							
 						</tr>
@@ -93,11 +93,11 @@ $(function() {
 						<tr>
 							<td style="width: 10%; font-weight: bold">평점</td>
 							<td colspan="6">
-							<input type="checkbox" value="directionpoint" name="point" <%if(dto.getDirectionpoint()==null?false:dto.getDirectionpoint().equals("u")){%>checked="checked"<%} %>>&nbsp감독연출&nbsp
-							<input type="checkbox" value="storypoint" name="point" <%if(dto.getStorypoint()==null?false:dto.getStorypoint().equals("u")){%>checked="checked"<%} %>>&nbsp스토리&nbsp
-							<input type="checkbox" value="visualpoint" name="point" <%if(dto.getVisualpoint()==null?false:dto.getVisualpoint().equals("u")){%>checked="checked"<%} %>>&nbsp영상미&nbsp
-							<input type="checkbox" value="actingpoint" name="point" <%if(dto.getActingpoint()==null?false:dto.getActingpoint().equals("u")){%>checked="checked"<%} %>>&nbsp배우연기&nbsp
-							<input type="checkbox" value="soundtrackpoint" name="point" <%if(dto.getSoundtrackpoint()==null?false:dto.getSoundtrackpoint().equals("u")){%>checked="checked"<%} %>>&nbspOST
+							<input type="checkbox" value="directionpoint" name="point" <%if(dto.getDirectionpoint()==null?false:dto.getDirectionpoint().equalsIgnoreCase("u")){%>checked="checked"<%} %>>&nbsp감독연출&nbsp
+							<input type="checkbox" value="storypoint" name="point" <%if(dto.getStorypoint()==null?false:dto.getStorypoint().equalsIgnoreCase("u")){%>checked="checked"<%} %>>&nbsp스토리&nbsp
+							<input type="checkbox" value="visualpoint" name="point" <%if(dto.getVisualpoint()==null?false:dto.getVisualpoint().equalsIgnoreCase("u")){%>checked="checked"<%} %>>&nbsp영상미&nbsp
+							<input type="checkbox" value="actingpoint" name="point" <%if(dto.getActingpoint()==null?false:dto.getActingpoint().equalsIgnoreCase("u")){%>checked="checked"<%} %>>&nbsp배우연기&nbsp
+							<input type="checkbox" value="soundtrackpoint" name="point" <%if(dto.getSoundtrackpoint()==null?false:dto.getSoundtrackpoint().equalsIgnoreCase("u")){%>checked="checked"<%} %>>&nbspOST
 							</td>
 						</tr>
 						<tr align="center">

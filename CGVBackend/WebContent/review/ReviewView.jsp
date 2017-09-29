@@ -95,18 +95,18 @@
 						<tr>
 							<td style="width: 10%; font-weight: bold">평점</td>
 							<td colspan="6">
-							<input type="checkbox" disabled="disabled" value="감독연출" <%if(dto.getDirectionpoint()==null?false:dto.getDirectionpoint().equals("u")){%>checked="checked"<%} %>>&nbsp감독연출&nbsp
-							<input type="checkbox" disabled="disabled" value="스토리" <%if(dto.getStorypoint()==null?false:dto.getStorypoint().equals("u")){%>checked="checked"<%} %>>&nbsp스토리&nbsp
-							<input type="checkbox" disabled="disabled" value="영상미" <%if(dto.getVisualpoint()==null?false:dto.getVisualpoint().equals("u")){%>checked="checked"<%} %>>&nbsp영상미&nbsp
-							<input type="checkbox" disabled="disabled" value="배우연기" <%if(dto.getActingpoint()==null?false:dto.getActingpoint().equals("u")){%>checked="checked"<%} %>>&nbsp배우연기&nbsp
-							<input type="checkbox" disabled="disabled" value="OST" <%if(dto.getSoundtrackpoint()==null?false:dto.getSoundtrackpoint().equals("u")){%>checked="checked"<%} %>>&nbspOST
+							<input type="checkbox" disabled="disabled" value="감독연출" <%if(dto.getDirectionpoint()==null?false:dto.getDirectionpoint().equalsIgnoreCase("U")){%>checked="checked"<%} %>>&nbsp감독연출&nbsp
+							<input type="checkbox" disabled="disabled" value="스토리" <%if(dto.getStorypoint()==null?false:dto.getStorypoint().equalsIgnoreCase("U")){%>checked="checked"<%} %>>&nbsp스토리&nbsp
+							<input type="checkbox" disabled="disabled" value="영상미" <%if(dto.getVisualpoint()==null?false:dto.getVisualpoint().equalsIgnoreCase("U")){%>checked="checked"<%} %>>&nbsp영상미&nbsp
+							<input type="checkbox" disabled="disabled" value="배우연기" <%if(dto.getActingpoint()==null?false:dto.getActingpoint().equalsIgnoreCase("U")){%>checked="checked"<%} %>>&nbsp배우연기&nbsp
+							<input type="checkbox" disabled="disabled" value="OST" <%if(dto.getSoundtrackpoint()==null?false:dto.getSoundtrackpoint().equalsIgnoreCase("U")){%>checked="checked"<%} %>>&nbspOST
 							</td>
 						</tr>
 						<tr align="center">
 							<td colspan="6"><a
 								href='<c:url value="/review/ReviewEdit.jsp?review_no=${requestScope.review_no}"/>'
-								id="update"><button class="btn btn-primary">수정</button></a>  <a href="javascript:isDelete()" id="delete"><button class="btn btn-success">삭제</button></a>  <a
-								href='<c:url value="/review/Review.cgv?nowPage=${param.nowPage}"/>'><button class="btn btn-danger">목록</button></a></td>
+								id="update">수정</a> | <a href="javascript:isDelete()" id="delete">삭제</a> | <a
+								href='<c:url value="/review/Review.cgv?nowPage=${param.nowPage}"/>'>목록</a></td>
 						</tr>
 					</tbody>
 				</table>
