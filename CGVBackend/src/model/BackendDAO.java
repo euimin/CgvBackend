@@ -1677,7 +1677,8 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 			psmt=conn.prepareStatement(sql);
 			psmt.setString(1, code);
 			rs=psmt.executeQuery();
-			rs.next();
+			
+			while(rs.next()) {
 			dto = new ShowTimeDTO(
 					rs.getString(1),
 					rs.getString(2),
@@ -1694,6 +1695,7 @@ public List<SupportPostDto> selectNewsList(Map<String,Object> map) {
 					rs.getString(13),
 					rs.getString("name")	
 					);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
