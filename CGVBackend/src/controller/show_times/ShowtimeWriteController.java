@@ -86,7 +86,7 @@ public class ShowtimeWriteController extends HttpServlet{
 		
 		BackendDAO dao=new BackendDAO(req.getServletContext());
 		List<ShowTimeDTO> list=dao.selectTheaterList(region);
-		
+		dao.close();
 		PrintWriter out=resp.getWriter();
 		out.println("<select name='theatername' onchange='mul();'>");
 		out.println("<option>극장이름</option> ");
@@ -107,7 +107,7 @@ public class ShowtimeWriteController extends HttpServlet{
 			System.out.println(theatername);
 			BackendDAO dao=new BackendDAO(req.getServletContext());
 			List<ShowTimeDTO> list=dao.selectNumberList(theatername);
-			 
+			dao.close();
 			for(ShowTimeDTO dto: list) {
 				System.out.println(dto.getNo());
 			}
@@ -127,7 +127,7 @@ public class ShowtimeWriteController extends HttpServlet{
 				//
 				BackendDAO dao=new BackendDAO(req.getServletContext());
 				List<ShowTimeDTO> list=dao.selectTimeList(no,theatername);		
-				
+				dao.close();
 				PrintWriter out=resp.getWriter();
 				out.println("<select name='time' id='time'>");
 				out.println("<option>이미 등록된 상영시간</option>");
